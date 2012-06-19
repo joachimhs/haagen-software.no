@@ -1,0 +1,64 @@
+[
+	{
+		"id": "about",
+		"pageName": "About",
+		"pageTitle": "About",
+		"pageImageUrl": "img/abouticon.png",
+		"pageDescription": "What is Haagen Software, what services are provides and why should you care ?",
+		"pageFilename": "about.md",
+		"parentPage": null, 
+		"childrenPages": null
+	},
+	{
+		"id": "opensource",
+		"pageName": "Open Source",
+		"pageTitle": "Open Source",
+		"pageImageUrl": "img/osi_standard_logo.png",
+		"pageDescription": "Haagen Software aims to release 100% of its code as Open Source under an Open Source Initiative approved license. Get more information about current, planned and future projects.",
+		"pageFilename": "opensource.md",
+		"parentPage": null, 
+		"childrenPages": ["eurekaj", "btrace"]
+	},
+	{
+		"id": "blog",
+		"pageName": "Blog",
+		"pageTitle": "Blog",
+		"pageImageUrl": "img/blog-icon-home.png",
+		"pageDescription": "Once in a while a blog post is written in relation to either one of the software projects being worked on, or on software development technologies or techniques in general.",
+		"pageFilename": "blog.md",
+		"parentPage": null, 
+		"childrenPages": null
+	},
+	{
+		"id": "consultancy",
+		"pageName": "Consultancy",
+		"pageTitle": "Consultancy",
+		"pageImageUrl": "img/hs_small.png",
+		"pageDescription": "Haagen Software is currently being bootstrapped. If you have an interesting project that you would like some help with, please do send a request. Consultancy fees start at USD 150 (NOK 900) excluding any taxes and government fees, for really interesting projects!",
+		"pageFilename": "consultancy.md",
+		"parentPage": null, 
+		"childrenPages": null
+	},
+	{
+		"id": "eurekaj",
+		"pageName": "EurekaJ",
+		"pageTitle": "EurekaJ",
+		"pageImageUrl": null,
+		"pageDescription": "EurekaJ description",
+		"pageFilename": "eurekaj.md",
+		"parentPage": "opensource", 
+		"childrenPages": null
+	},
+	{
+		"id": "btrace",
+		"pageName": "BTrace",
+		"pageTitle": "BTrace",
+		"pageImageUrl": null,
+		"pageDescription": "Btrace description",
+		"pageFilename": "btrace.md",
+		"parentPage": "opensource", 
+		"childrenPages": null
+	}
+	
+
+]
