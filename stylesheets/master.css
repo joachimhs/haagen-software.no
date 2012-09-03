@@ -63,6 +63,16 @@ body a:hover{
 	overflow: scroll;
 }
 
+#menuArea {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 230px;
+    margin-bottom: 90px;
+    overflow: scroll;
+}
+
 #links {
 	text-align: left;
 	float: none;
@@ -114,6 +124,12 @@ body a:hover{
 
 #page {
 	margin-left: 230px;
+    margin-right: 10px;
+    background-color: #fff;
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 10px;
 }
 
 #container div {
@@ -121,21 +137,12 @@ body a:hover{
   float: left;
 }
 
-#pageContent {
-	background-color: #fff;
-	border: 1px solid;
-	border-radius: 15px;
-	padding: 10px;	
-	margin-top: 10px;
-	width: 90%;
-}
-
-#pageContent h1 {
+#page h1 {
 	text-align: center;
 	font-size: 1.6em;
 }
 
-#pageContent img {
+#page img {
     max-width: 100%;
 }
 
@@ -181,12 +188,12 @@ ul.blogmenuLinkList li:before {
 	margin-top: 5px;
 }
 
-#menu a {
+#menuArea a {
     color: #000000;
     text-decoration: none;
 }
 
-#menu a:hover{
+#menuArea a:hover{
     color: #DB7A46;
     text-decoration: underline;
 }
@@ -194,4 +201,54 @@ ul.blogmenuLinkList li:before {
 
 .pointer {
 	cursor:pointer;
+}
+
+#leftCV {
+    text-align: right;
+    float: left;
+    margin: 15px;
+    margin-top: -15px;
+    font-weight: lighter;
+    letter-spacing: normal;
+    vertical-align: top;
+}
+
+#rightCV {
+    text-align: left;
+    margin: 15px;
+    font-weight: lighter;
+    letter-spacing: normal;
+    vertical-align: top;
+}
+
+#rightCV h1 {
+    text-align: left;
+    letter-spacing: -0.08em;
+    font-weight: normal;
+    margin: 0px;
+    margin-top: 15px;
+    padding: 0px;
+    color: #000000;
+}
+
+#leftCV h1 {
+    text-align: right;
+    letter-spacing: -0.08em;
+    font-weight: normal;
+    margin: 0px;
+    margin-top: 15px;
+    padding: 0px;
+    color: #000000;
+}
+
+.cvheadlinecolor {
+    color: #f00;
+}
+
+.cvtable {
+
+}
+.cvtable tr td {
+    vertical-align: top;
+    min-width: 200px;
 }

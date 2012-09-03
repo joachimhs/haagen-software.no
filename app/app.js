@@ -2,14 +2,10 @@
 HS = Ember.Application.create({
 	ready: function() {
 		this._super();
-		
-		var frontPages = HS.store.findAll(HS.PageModel);
-		HS.PagesController.set('roots',frontPages);
-
-        var blogPosts = HS.store.findAll(HS.BlogPost);
-        HS.BlogPostsListController.set('content', blogPosts);
 	}
 });
+
+var colorArray = ["#f35", "#c3d", "#0f3", "#41c", "#ca5", "#947", "#1ce", "#f0d", "#ff0", "#00f", "#bae", "#dd8"];
 
 //Removing the Camelcase-to-dash convention from Ember Data
 DS.Model.reopen({
@@ -24,112 +20,121 @@ DS.Model.reopen({
   }
 });
 
-Handlebars.registerHelper('convertMarkdown', function(property) {
-	var value = Ember.getPath(this, property);
-    console.log('value');
-    console.log(value);
-    console.log('property');
-    console.log(property);
+//Setting up the adapter to receive data from the server
+HS.Adapter = DS.Adapter.create({
+    //Finding all object of a certain type. Fetching from the server
+    findAll: function(store, type, ids) {
+        var url = type.url.substring(0, (type.url.length - 7));
+        jQuery.getJSON(url, function(data) {
+            if (window.console)console.log('findAll. getting from url: ' + url + ' length: ' + data.length);
+            console.log(data);
+            store.loadMany(type, data);
+        });
+    },
 
-    if (value) {
-        var converter = new Showdown.converter();
-        console.log(value.toString());
-        return new Handlebars.SafeString(converter.makeHtml(value.toString()));
+    //Finding a single item from the store based on the object type and the ID
+    //of the object that you are querying for.
+    find: function(store, type, id) {
+        var url = type.url;
+        url = url.fmt(id);
+
+        jQuery.getJSON(url, function(data) {
+            console.log('find from url: ' + url);
+            console.log(data);
+            store.load(type, id, data);
+        });
+    },
+
+    updateRecord: function(store, type, model) {
+        if (window.console)console.log('update record');
+        if (window.console)console.log(model);
+
+        jQuery.ajax({
+            url: type.url,
+            dataType: 'json',
+            type: 'POST',
+
+            success: function(data) {
+                // data is a hash of key/value pairs representing the record
+                // in its current state on the server.
+                if (window.console)console.log(type.url);
+                if (window.console)console.log(data);
+                store.didUpdateRecord(model, data);
+            }
+        });
+    },
+
+    updateRecords: function(store, type, array) {
+        if (window.console)console.log('update records');
+
+        var root = this.rootForType(type);
+        var plural = this.pluralize(root);
+
+        if (window.console)console.log(root);
+
+        var data = {};
+        data[root] = array.map(function(record) {
+            return record.toJSON();
+        });
+
+        if (window.console)console.log(JSON.stringify(data));
+
+        jQuery.ajax({
+            url: type.url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            type: 'POST',
+
+            success: function(data) {
+                // data is an array of hashes in the same order as
+                // the original records that were sent.
+                if (window.console)console.log(type.url);
+                if (window.console)console.log(data);
+                store.didUpdateRecords(array);
+            }
+        });
+    },
+
+    commit: function(store, commitDetails) {
+        commitDetails.updated.eachType(function(type, array) {
+            this.updateRecords(store, type, array.slice());
+        }, this);
+
+        commitDetails.created.eachType(function(type, array) {
+            this.createRecords(store, type, array.slice());
+        }, this);
+
+        commitDetails.deleted.eachType(function(type, array) {
+            this.deleteRecords(store, type, array.slice());
+        }, this);
+    },
+
+    plurals: {},
+
+    // define a plurals hash in your subclass to define
+    // special-case pluralization
+    pluralize: function(name) {
+        return this.plurals[name] || name + "s";
+    },
+
+    rootForType: function(type) {
+        if (type.url) { return type.url; }
+
+        // use the last part of the name as the URL
+        var parts = type.toString().split(".");
+        var name = parts[parts.length - 1];
+        return name.replace(/([A-Z])/g, '_$1').toLowerCase().slice(1);
     }
 
-    return '';
+    //There are other Adaptor methods that can be implemented to allow for a richer
+    //object store in the database. Please see https://github.com/emberjs/data for
+    //more information on this topic.
+
 });
 
-HS.performLink = function(pageType, linkid) {
-    if(pageType.substr(-1) === "" || pageType.substr(-1) === "/") {
-        SC.routes.set("location", linkid);
-    } else {
-        SC.routes.set("location", pageType + "/" + linkid);
-    }
-}
-
-
-Ember.TEMPLATES['tableCellTemplate'] = Ember.Handlebars.compile('' +
-    '<div class="imgdiv"><img {{bindAttr src="pageImageUrl"}}></div>' +
-    '<div class="txtdiv">' +
-    '<h1>{{pageTitle}}</h1>' +
-        '{{pageDescription}}<br/>' +
-        '-&gt; <a {{bindAttr href="postFullUrl"}} {{bindAttr onclick="linkClickString"}} >Read more</a>' +
-    '</div>'
-);
-
-Ember.TEMPLATES['indexTemplate'] = Ember.Handlebars.compile('' +
-    '<div id="header">' +
-        '<h1>The Open Source Application Monitoring Tool</h1>' +
-        '<h1>Featuring EurekaJ</h1>' +
-    '</div>' +
-
-    '<div id="content">' +
-        '{{#each content}}' +
-            '{{view HS.PageItemView contentBinding="this"}}' +
-        '{{/each}}' +
-    '</div>'
-);
-
-Ember.TEMPLATES['pageTemplate'] = Ember.Handlebars.compile('' +
-    '{{view HS.PageView templateName="pageContentTemplate" contentBinding="content.markdown"}}' +
-    '{{view Em.View templateName="menuTemplate" elementId="menu" contentBinding="HS.PagesController.content"}}'
-);
-
-Ember.TEMPLATES['pageContentTemplate'] = Ember.Handlebars.compile('' +
-    '{{#with content}}' +
-        '{{convertMarkdown markdown}}' +
-    '{{/with}}'
-);
-
-//'<img src="/img/hs_small.png" width="100" height="120" alt="Hs Small" style="margin-left: 50px;" onclick="SC.routes.set('location', '');">
-Ember.TEMPLATES['menuTemplate'] = Ember.Handlebars.compile('' +
-    '<a href="/"><img src="/img/hs_small.png" width="100" height="120" alt="Hs Small" style="margin-left: 50px;"></a>' +
-    '{{#each HS.PagesController.content}}' +
-        '{{view HS.LeftMenuItemView contentBinding="content"}}' +
-    '{{/each}}' +
-
-    '<h3>Blog Posts:</h3>' +
-    '<ul class="blogmenuLinkList">' +
-        '{{#each HS.BlogPostsListController.arrangedContent}}' +
-            '<li> <a {{bindAttr href="postFullUrl"}} {{bindAttr onclick="linkClickString"}} >{{postTitle}}</a></li>' +
-        '{{/each}}' +
-    '</ul>'
-);
-
-Ember.TEMPLATES['menuItemTemplate'] = Ember.Handlebars.compile('' +
-    '{{view HS.LeftMenuItemTextView contentBinding="content"}}' +
-
-    '{{#each childrenPages}}' +
-        '{{#with this}}' +
-            '<div style="margin-left: 18px;">{{view HS.LeftMenuItemView contentBinding="content"}}</div>' +
-        '{{/with}}' +
-    '{{/each}}'
-);
-
-
-Ember.TEMPLATES['menuItemTextTemplate'] = Ember.Handlebars.compile('' +
-    '<a {{bindAttr href="postFullUrl"}} {{bindAttr onclick="linkClickString"}} >{{pageName}}</a>'
-);
-
-Ember.TEMPLATES['blogIntroTemplate'] = Ember.Handlebars.compile('' +
-    '{{view Em.View templateName="menuTemplate" elementId="menu"}}' +
-    '<div id="pageContent">' +
-        '<h1>Haagen Software Blog</h1>' +
-
-        '{{#each content}}' +
-            '<div class="blogPostIntro">' +
-                '<h2>{{postDate}}: {{postTitle}}</h2>' +
-                '{{postLongIntro}}' +
-                '<br />' +
-                '&gt; <a {{bindAttr href="postFullUrl"}} {{bindAttr onclick="linkClickString"}} >Read More</a>' +
-            '</div>' +
-        '{{/each}}' +
-    '</div>'
-);
-
-Ember.TEMPLATES['blogPostTemplate'] = Ember.Handlebars.compile('' +
-    '{{view Em.View templateName="menuTemplate" elementId="menu" contentBinding="HS.PagesController.content"}}' +
-    '{{view HS.PageView templateName="pageContentTemplate" contentBinding="content.markdown"}}'
-);
+HS.store = DS.Store.create({
+    revision: 4, //Revision 4 is the newest revision of Ember Data, as of 26th of May 2012
+    adapter: HS.Adapter
+    //adapter: Ember.RESTAdapter
+});
 

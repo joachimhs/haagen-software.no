@@ -1,104 +1,82 @@
 //Our Controllers go here
+HS.ApplicationController = Ember.Controller.extend({
 
-HS.PagesController = Ember.ArrayController.create({
-	content: [], 
-	roots: null,
+});
+
+HS.MenuController = Ember.ArrayController.extend({
+    content: []
+});
+
+HS.PagesController = Ember.ArrayController.extend({
+	content: [],
 	selectedPage: null,
 	selectedPageId: null,
-	
+
+    selectedPageIdObserver: function() {
+        this.selectPageWithId(this.get('selectedPageId'));
+    }.observes('selectedPageId'),
+
 	//Function to return the correct chapter based on the chapter ID
 	selectPageWithId: function(pageId) {
 		var foundPage = null;
 		
-		this.get('roots').forEach(function(page) {
+		this.get('content').forEach(function(page) {
 			if (page.get('id') == pageId) {
 				foundPage = page;
 			}
 		})
 		
-		this.set('selectedPage', foundPage);
+		HS.router.get('pageController').set('content', foundPage);
 		this.set('selectedPageId', pageId);
 	},
 	
 	contentObserver: function() {
-		if (this.get('selectedPageId')) {
-			this.selectPageWithId(this.get('selectedPageId'));
-		}
-	}.observes('content.length'),
-	
-	rootsObserver: function() {
-		var roots = this.get('roots');
-		
-		console.log('rootsObserver: ' + roots.get('length'));
-		
-		if (roots.get('length') > 0) {
-			var content = [];
-
-			for (index = 0; index < roots.get('length'); index++) {
-				if (roots.objectAt(index).get('parentPage') === null)
-					content.pushObject(roots.objectAt(index));
-			}
-
-			this.set('content', content);
-		}
-	}.observes('roots.length')
+        this.selectPageWithId(this.get('selectedPageId'));
+	}.observes('content.length')
 });
 
-HS.SelectedPage = Ember.Object.create({
-	contentBinding: 'HS.PagesController.selectedPage',
-	markdown: null,
-	
-	contentObserver: function() {
-		 if (this.get('content')) {
-			console.log('getting contents for Page: ' + this.get('content').get('id'));
-			var markdown = null;
-			$.get("/pages/" + this.get('content').get('pageFilename'), function(data) {
-				HS.SelectedPage.set('markdown', data);
-			}, "text")
-				.error(function() { 
-					HS.SelectedPage.set('markdown', "Unable to find specified page"); 
-					//TODO: Navigate to 404 state
-				});				
-		} else {
-			this.set('markdown', null);
-		}
-	}.observes('content')
+HS.PageController = Ember.Controller.extend({
+	content: null
 });
 
-HS.BlogPostsListController = Em.ArrayController.create({
-    content: [],
-    sortAscending: false,
-    sortProperties: ['postDate'],
-    selectedPost: null,
-    selectedPostId: null,
+HS.BlogsController= Em.ArrayController.extend({
+        content: [],
+        sortAscending: false,
+        sortProperties: ['postDate'],
+        selectedPostId: null,
 
-    selectBlogPostWithId: function(postId) {
-        var foundPost = null;
+        selectBlogPostWithId: function(postId) {
+            console.log('selecting BlogPost with ID: ' + postId);
+            var foundPost = null;
 
-        this.get('content').forEach(function(post) {
-            if (post.get('id') == postId) {
-                foundPost = post;
-            }
-        })
+            this.get('content').forEach(function(post) {
+                console.log('id: ' + post.get('id') + " postId: " + postId);
 
-        this.set('selectedPost', foundPost);
-        this.set('selectedPostId', postId);
-    },
+                if (post.get('id') == postId) {
+                    foundPost = post;
+                }
+            });
 
-    contentObserver: function() {
-        if (this.get('selectedPostId')) {
+            console.log(foundPost);
+            HS.router.get('blogPostController').set('content', foundPost);
+            this.set('selectedPostId', postId);
+        },
+
+        selectedPostIdObserver: function() {
             this.selectBlogPostWithId(this.get('selectedPostId'));
-        }
-    }.observes('content.length')
-});
+        }.observes('selectedPostId'),
 
-HS.SelectedBlogPostController = Em.Object.create({
-    contentBinding: 'HS.BlogPostsListController.selectedPost',
+        contentObserver: function() {
+            this.selectBlogPostWithId(this.get('selectedPostId'));
+        }.observes('content.length')
+    });
+
+HS.BlogPostController = Em.Controller.extend({
+    content: null,
     markdown: null,
 
     contentObserver: function() {
         if (this.get('content')) {
-            console.log('getting contents for Post: ' + this.get('content').get('id'));
             var markdown = null;
             $.get("/posts/" + this.get('content').get('id') + ".md", function(data) {
                 HS.SelectedBlogPostController.set('markdown', data);
@@ -111,4 +89,37 @@ HS.SelectedBlogPostController = Em.Object.create({
             this.set('markdown', null);
         }
     }.observes('content')
+});
+
+HS.CvsController = Ember.ArrayController.extend({
+    content: [],
+    selectedCvId: null,
+
+    selectCvWithId: function(cvId) {
+        console.log('getting CV with ID: ' + cvId);
+        var foundCv = null;
+
+        this.get('content').forEach(function(cv) {
+            console.log('id: ' + cv.get('id') + " cvId: " + cvId);
+            if (cv.get('id') === cvId) {
+                foundCv = cv;
+            }
+        });
+
+        console.log(foundCv);
+        HS.router.get('cvController').set('content', foundCv);
+        this.set('selectedCvId', cvId);
+    },
+
+    selectedCvIdObserver: function() {
+        this.selectCvWithId(this.get('selectedCvId'));
+    }.observes('selectedCvId'),
+
+    contentObserver: function() {
+        this.selectCvWithId(this.get('selectedCvId'));
+    }.observes('content.length')
+});
+
+HS.CvController = Ember.Controller.extend({
+    content: null
 });

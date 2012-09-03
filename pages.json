@@ -7,7 +7,8 @@
 		"pageDescription": "What is Haagen Software, what services are provides and why should you care ?",
 		"pageFilename": "about.md",
 		"parentPage": null, 
-		"childrenPages": null
+		"childrenPages": null,
+        "visibleOnFrontPage": true
 	},
 	{
 		"id": "opensource",
@@ -17,17 +18,19 @@
 		"pageDescription": "Haagen Software aims to release 100% of its code as Open Source under an Open Source Initiative approved license. Get more information about current, planned and future projects.",
 		"pageFilename": "opensource.md",
 		"parentPage": null, 
-		"childrenPages": ["eurekaj", "btrace"]
+		"childrenPages": ["eurekaj", "btrace"],
+        "visibleOnFrontPage": true
 	},
 	{
-		"id": "blog",
+		"id": "blogs",
 		"pageName": "Blog",
 		"pageTitle": "Blog",
 		"pageImageUrl": "img/blog-icon-home.png",
 		"pageDescription": "Once in a while a blog post is written in relation to either one of the software projects being worked on, or on software development technologies or techniques in general.",
-		"pageFilename": "blog.md",
+		"pageFilename": null,
 		"parentPage": null, 
-		"childrenPages": null
+		"childrenPages": null,
+        "visibleOnFrontPage": true
 	},
 	{
 		"id": "consultancy",
@@ -37,7 +40,8 @@
 		"pageDescription": "Haagen Software is currently being bootstrapped. If you have an interesting project that you would like some help with, please do send a request. Consultancy fees start at USD 150 (NOK 900) excluding any taxes and government fees, for really interesting projects!",
 		"pageFilename": "consultancy.md",
 		"parentPage": null, 
-		"childrenPages": null
+		"childrenPages": null,
+        "visibleOnFrontPage": true
 	},
 	{
 		"id": "eurekaj",
@@ -47,7 +51,8 @@
 		"pageDescription": "EurekaJ description",
 		"pageFilename": "eurekaj.md",
 		"parentPage": "opensource", 
-		"childrenPages": null
+		"childrenPages": null,
+        "visibleOnFrontPage": false
 	},
 	{
 		"id": "btrace",
@@ -57,8 +62,20 @@
 		"pageDescription": "Btrace description",
 		"pageFilename": "btrace.md",
 		"parentPage": "opensource", 
-		"childrenPages": null
-	}
+		"childrenPages": null,
+        "visibleOnFrontPage": false
+	},
+    {
+        "id": "cv",
+        "pageName": "CV",
+        "pageTitle": "CV",
+        "pageImageUrl": null,
+        "pageDescription": "CV",
+        "pageFilename": null,
+        "parentPage": null,
+        "childrenPages": null,
+        "visibleOnFrontPage": false
+    }
 	
 
 ]

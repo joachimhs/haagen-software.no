@@ -1,0 +1,37 @@
+[
+    {
+        "id": "Joachim_Haagen_Skeie",
+        "name": "Joachim Haagen Skeie",
+        "about": [
+            {"id" :"Gamle Bygdevei 180C" },
+            {"id" :"1284 Oslo" },
+            {"id" : "Norway"},
+            {"id" : "+47 4141 5805"},
+            {"id": " "},
+            {"id" :"joachim@haagen.name"},
+            {"id" : "http://haagen.name"}
+        ],
+        "languages": [
+            {"id": "Norwegian"},
+            {"id": "English"}
+        ],
+        "programming": [
+            {"id": "Java, Java EE"},
+            {"id": "Spring, JavaServer Faces"},
+            {"id": "JavaScript, jQuery"},
+            {"id": "Ember.js, SproutCore"},
+            {"id": "JSP, JDBC"},
+            {"id": "Web services, SOAP, REST, WSDL"},
+            {"id": "Apache CXF, Apache Camel, JMS"},
+            {"id": "Objective-C, iPhone, iPad"},
+            {"id": "Oracle, Sybase, Perst, Berkeley DB JE"}
+        ],
+        "interest": "Web applications, Rich Internet Applications, Ember.js, SproutCore, Client/Server, Model-View-Controller, Java, Application Monitoring, Application Profiling, Performance.",
+        "educationIDs": [1, 2],
+        "experienceIDs": [4, 1, 2, 3],
+        "projectIDs": [1, 2, 3],
+        "opensourceIDs": [3, 2, 1],
+        "publicationIDs": [5, 4, 3, 2, 1],
+        "courseIDs": [8, 7, 6, 5, 4, 3, 2, 1]
+    }
+]
