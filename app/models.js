@@ -18,25 +18,7 @@ HS.PageModel = DS.Model.extend({
 
     }.property('id').cacheable(),
 
-    markdown: null,
-    pageFileNameObserver: function() {
-        if (this.get('pageFilename')) {
-            var page = this;
-
-            $.get("/markdown/" + this.get('pageFilename'), function(data) {
-                var converter = new Showdown.converter();
-
-                page.set('markdown', new Handlebars.SafeString(converter.makeHtml(data)));
-            }, "text")
-                .error(function() {
-                    page.set('markdown',  "Unable to find specified page");
-                    //TODO: Navigate to 404 state
-                });
-
-        } else {
-            this.set('markdown', null);
-        }
-    }.observes('pageFilename')
+    markdown: null
 });
 
 //We are reopening the class so that we can add the URL that the 
@@ -53,25 +35,7 @@ HS.BlogPost = DS.Model.extend({
     postFullUrl: function() {
         return "/blog/post/" + this.get('id');
     }.property('id').cacheable(),
-
-    postIdObserver: function() {
-        if (this.get('id')) {
-            var page = this;
-
-            $.get("/posts/" + this.get('id') + ".md", function(data) {
-                var converter = new Showdown.converter();
-
-                page.set('markdown', new Handlebars.SafeString(converter.makeHtml(data)));
-            }, "text")
-                .error(function() {
-                    page.set('markdown',  "Unable to find specified page");
-                    //TODO: Navigate to 404 state
-                });
-
-        } else {
-            this.set('markdown', null);
-        }
-    }.observes('id')
+    markdown: null
 });
 
 HS.BlogPost.reopenClass({
@@ -115,10 +79,6 @@ HS.EducationData = DS.Model.extend({
     link: DS.attr('string')
 });
 
-HS.EducationData.reopenClass({
-    url: '/education.json?ids=%@'
-});
-
 HS.ExperienceData = DS.Model.extend({
     primaryKey: 'id',
     id: DS.attr('string'),
@@ -126,10 +86,6 @@ HS.ExperienceData = DS.Model.extend({
     title: DS.attr('string'),
     description: DS.attr('string'),
     link: DS.attr('string')
-});
-
-HS.ExperienceData.reopenClass({
-    url: '/experience.json?ids=%@'
 });
 
 HS.ProjectData = DS.Model.extend({
@@ -142,10 +98,6 @@ HS.ProjectData = DS.Model.extend({
     link: DS.attr('string')
 });
 
-HS.ProjectData.reopenClass({
-    url: '/projects.json?ids=%@'
-});
-
 HS.OpenSourceData = DS.Model.extend({
     primaryKey: 'id',
     id: DS.attr('string'),
@@ -154,10 +106,6 @@ HS.OpenSourceData = DS.Model.extend({
     description: DS.attr('string'),
     client: DS.attr('string'),
     link: DS.attr('string')
-});
-
-HS.OpenSourceData.reopenClass({
-    url: '/opensource.json?ids=%@'
 });
 
 HS.PublicationData = DS.Model.extend({
@@ -170,10 +118,6 @@ HS.PublicationData = DS.Model.extend({
     location: DS.attr('string')
 });
 
-HS.PublicationData.reopenClass({
-    url: '/publications.json?ids=%@'
-});
-
 HS.CourseData = DS.Model.extend({
     primaryKey: 'id',
     id: DS.attr('string'),
@@ -181,8 +125,4 @@ HS.CourseData = DS.Model.extend({
     title: DS.attr('string'),
     description: DS.attr('string'),
     link: DS.attr('string')
-});
-
-HS.CourseData.reopenClass({
-    url: '/courses.json?ids=%@'
 });

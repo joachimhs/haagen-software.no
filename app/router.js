@@ -2,11 +2,6 @@ HS.router = Ember.Router.create({
     enableLogging: true,
     location: 'history',
     root: Ember.Route.extend({
-
-        clickMenuLink: function() {
-            console.log('menu click');
-        },
-
         enter: function() {
             //HS.router.get('blogPostsListController').set('content', HS.store.findAll(HS.BlogPost));
             console.log('enter root state');
@@ -62,7 +57,7 @@ HS.router = Ember.Router.create({
         blogs: Ember.Route.extend({
             route: '/blog',
             initialState: 'index',
-            
+
             connectOutlets: function(router) {
                 var frontPages = HS.store.filter(HS.PageModel, function(data) {
                     if (data.get('parentPage') === null) { return true; }
@@ -96,6 +91,8 @@ HS.router = Ember.Router.create({
             initialState: 'index',
 
             connectOutlets: function(router) {
+
+                router.get('blogsController').set('content', HS.BlogPost.find());
                 var frontPages = HS.store.filter(HS.PageModel, function(data) {
                     if (data.get('parentPage') === null) { return true; }
                 });
@@ -103,19 +100,14 @@ HS.router = Ember.Router.create({
                 router.get('applicationController').connectOutlet('menu', 'menu', frontPages);
                 router.get('applicationController').connectOutlet('footer', 'footer');
 
-                HS.store.findAll(HS.EducationData);
-                HS.store.findAll(HS.ExperienceData);
-                HS.store.findAll(HS.ProjectData);
-                HS.store.findAll(HS.OpenSourceData);
-                HS.store.findAll(HS.PublicationData);
-                HS.store.findAll(HS.CourseData);
+
                 HS.store.findAll(HS.CVData);
                 router.get('applicationController').connectOutlet('cvs', HS.store.find(HS.CVData));
             },
 
             index: Ember.Route.extend({
                 route: '/',
-                doClickCV: Ember.Route.transitionTo("cv.showCV", {"cv_id": "Joachim_Haagen_Skeie"}),
+
                 connectOutlets: function(router) {
                     router.get('applicationController').connectOutlet('cvs', HS.store.find(HS.CVData));
                 }
@@ -126,6 +118,7 @@ HS.router = Ember.Router.create({
 
                 connectOutlets: function(router, cv) {
                     console.log('CV id: ' + cv.cv_id);
+
                     router.get('applicationController').connectOutlet('cv');
                     router.get('cvsController').set('selectedCvId', cv.cv_id);
                 }

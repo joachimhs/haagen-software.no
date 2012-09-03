@@ -26,9 +26,18 @@ HS.Adapter = DS.Adapter.create({
     findAll: function(store, type, ids) {
         var url = type.url.substring(0, (type.url.length - 7));
         jQuery.getJSON(url, function(data) {
-            if (window.console)console.log('findAll. getting from url: ' + url + ' length: ' + data.length);
-            console.log(data);
-            store.loadMany(type, data);
+            if (window.console) console.log('findAll. getting from url: ' + url + ' length: ' + data.length + " type: " + type);
+            if (type === HS.CVData) {
+                if (data.experience) store.loadMany(HS.ExperienceData, data.experience);
+                if (data.course) store.loadMany(HS.CourseData, data.course);
+                if (data.education) store.loadMany(HS.EducationData, data.education);
+                if (data.opensource) store.loadMany(HS.OpenSourceData, data.opensource);
+                if (data.projects) store.loadMany(HS.ProjectData, data.projects);
+                if (data.publications) store.loadMany(HS.PublicationData, data.publications);
+                if (data.cvs) store.loadMany(type, data.cvs);
+            } else {
+                store.loadMany(type, data);
+            }
         });
     },
 
