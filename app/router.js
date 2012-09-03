@@ -20,7 +20,6 @@ HS.router = Ember.Router.create({
                     if (data.get('parentPage') === null) { return true; }
                 });
                 router.get('pagesController').set('content', frontPages);
-
             }
         }),
         pages: Ember.Route.extend({
@@ -50,6 +49,7 @@ HS.router = Ember.Router.create({
                     console.log(page);
                     router.get('pagesController').set('selectedPageId', page.page_id);
                     router.get('applicationController').connectOutlet('page');//, HS.PageModel.find(page.page_id));
+                    mixpanel.track("Navigate to page: " + page.page_id);
                 }
             })
         }),
@@ -73,6 +73,7 @@ HS.router = Ember.Router.create({
 
                 connectOutlets: function(router) {
                     router.get('applicationController').connectOutlet('blogs', HS.BlogPost.find());
+                    mixpanel.track("Navigate to Blog");
                 }
             }),
 
@@ -83,6 +84,7 @@ HS.router = Ember.Router.create({
                     console.log('blog post id: ' + post.post_id);
                     router.get('applicationController').connectOutlet('blogPost');
                     router.get('blogsController').set('selectedPostId', post.post_id);
+                    mixpanel.track("Navigate to Blog Post: " + post.post_id);
                 }
             })
         }),
@@ -110,6 +112,7 @@ HS.router = Ember.Router.create({
 
                 connectOutlets: function(router) {
                     router.get('applicationController').connectOutlet('cvs', HS.store.find(HS.CVData));
+                    mixpanel.track("Navigate to CV");
                 }
             }),
 
@@ -121,6 +124,7 @@ HS.router = Ember.Router.create({
 
                     router.get('applicationController').connectOutlet('cv');
                     router.get('cvsController').set('selectedCvId', cv.cv_id);
+                    mixpanel.track("Navigate to CV for: " + cv.cv_id);
                 }
             })
         }),
