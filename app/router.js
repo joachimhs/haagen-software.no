@@ -1,7 +1,11 @@
 HS.router = Ember.Router.create({
     enableLogging: true,
-    //location: 'history',
+    location: 'history',
     root: Ember.Route.extend({
+
+        clickMenuLink: function() {
+            console.log('menu click');
+        },
 
         enter: function() {
             //HS.router.get('blogPostsListController').set('content', HS.store.findAll(HS.BlogPost));
@@ -47,7 +51,7 @@ HS.router = Ember.Router.create({
                 },
 
                 connectOutlets: function(router, page) {
-                    console.log('pages page id: ' + page.page_id);
+                    console.log('markdown page id: ' + page.page_id);
                     console.log(page);
                     router.get('pagesController').set('selectedPageId', page.page_id);
                     router.get('applicationController').connectOutlet('page');//, HS.PageModel.find(page.page_id));
@@ -57,7 +61,8 @@ HS.router = Ember.Router.create({
         /* //Legacy states */
         blogs: Ember.Route.extend({
             route: '/blog',
-
+            initialState: 'index',
+            
             connectOutlets: function(router) {
                 var frontPages = HS.store.filter(HS.PageModel, function(data) {
                     if (data.get('parentPage') === null) { return true; }
@@ -88,6 +93,8 @@ HS.router = Ember.Router.create({
         }),
         cv: Ember.Route.extend({
             route: '/cv',
+            initialState: 'index',
+
             connectOutlets: function(router) {
                 var frontPages = HS.store.filter(HS.PageModel, function(data) {
                     if (data.get('parentPage') === null) { return true; }

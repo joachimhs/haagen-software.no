@@ -50,14 +50,30 @@ HS.LeftMenuItemView = Ember.View.extend({
 });
 
 HS.LeftMenuItemTextView = Ember.View.extend({
-	content: null,
+    content: null,
 	templateName: 'menuItemTextTemplate',
 	classNames: ["pointer"],
 	
 	click: function() {
 		//HS.FrontPagesController.set('selectedPage', this.get('content'));
 		//SC.routes.set('location', '' + this.get('content').get('id'));
-	}
+        console.log('HS.LeftMenuItemTextView click');
+        console.log(this.get('content'));
+        if (this.get('content').get('pageFilename') != null) {
+            HS.router.transitionTo("pages.page", {"page_id": this.get('content').get('id')});
+        } else {
+            HS.router.transitionTo(this.get('content').get('id'));
+        }
+	},
+
+    clickMenuLink: function() {
+        console.log('HS.LeftMenuItemTextView clickMenuLink');
+    },
+
+    contentObserver: function() {
+        console.log('\tcontent observer');
+        console.log(this.get('content'));
+    }.observes('content')
 });
 
 HS.BlogsView = Ember.View.extend({

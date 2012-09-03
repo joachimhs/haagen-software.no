@@ -48,7 +48,7 @@ Ember.TEMPLATES['menuTemplate'] = Ember.Handlebars.compile('' +
 );
 
 Ember.TEMPLATES['menuItemTemplate'] = Ember.Handlebars.compile('' +
-    '{{view HS.LeftMenuItemTextView contentBinding="content"}}' +
+    '{{view HS.LeftMenuItemTextView contentBinding="this"}}' +
 
     '{{#each childrenPages}}' +
         '<div style="margin-left: 18px;">{{view HS.LeftMenuItemView contentBinding="this"}}</div>' +
@@ -57,7 +57,7 @@ Ember.TEMPLATES['menuItemTemplate'] = Ember.Handlebars.compile('' +
 
 
 Ember.TEMPLATES['menuItemTextTemplate'] = Ember.Handlebars.compile('' +
-    '<a {{bindAttr href="postFullUrl"}} {{bindAttr onclick="linkClickString"}} >{{pageName}}</a>'
+    '{{pageName}}'
 );
 
 Ember.TEMPLATES['blogIndexTemplate'] = Ember.Handlebars.compile('' +

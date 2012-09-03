@@ -11,9 +11,9 @@ HS.PageModel = DS.Model.extend({
 
     postFullUrl: function() {
         if (this.get('pageFilename') != null) {
-            return "/#/pages/" + this.get('id');
+            return "/pages/" + this.get('id');
         } else {
-            return "/#/" + this.get('id');
+            return "/" + this.get('id');
         }
 
     }.property('id').cacheable(),
@@ -23,8 +23,7 @@ HS.PageModel = DS.Model.extend({
         if (this.get('pageFilename')) {
             var page = this;
 
-            $.get("/pages/" + this.get('pageFilename'), function(data) {
-                //console.log('got Markdown: ' + data);
+            $.get("/markdown/" + this.get('pageFilename'), function(data) {
                 var converter = new Showdown.converter();
 
                 page.set('markdown', new Handlebars.SafeString(converter.makeHtml(data)));
@@ -52,7 +51,7 @@ HS.BlogPost = DS.Model.extend({
     postShortIntro: DS.attr('string'),
     postLongIntro: DS.attr('string'),
     postFullUrl: function() {
-        return "/#/blog/post/" + this.get('id');
+        return "/blog/post/" + this.get('id');
     }.property('id').cacheable(),
 
     postIdObserver: function() {
@@ -60,7 +59,6 @@ HS.BlogPost = DS.Model.extend({
             var page = this;
 
             $.get("/posts/" + this.get('id') + ".md", function(data) {
-                //console.log('got Markdown: ' + data);
                 var converter = new Showdown.converter();
 
                 page.set('markdown', new Handlebars.SafeString(converter.makeHtml(data)));
@@ -96,12 +94,12 @@ HS.CVData = DS.Model.extend({
     course: DS.hasMany('HS.CourseData', {key: 'courseIDs'}),
 
     cvFullUrl: function() {
-        return '/#/cv/' + this.get('id');
+        return '/cv/' + this.get('id');
     }.property('id').cacheable()
 });
 
 HS.CVData.reopenClass({
-    url: '/cvdata.json?ids=%@'
+    url: '/curriculumvitae.json?ids=%@'
 });
 
 HS.DataString = DS.Model.extend({
