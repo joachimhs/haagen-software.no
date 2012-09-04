@@ -70,6 +70,7 @@ body a:hover{
     left: 0px;
     width: 230px;
     margin-bottom: 90px;
+    margin-left: 5px;
     overflow: scroll;
 }
 

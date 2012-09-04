@@ -54,6 +54,15 @@
         "postShortIntro": "My question, is simply this: When did Agile grow into a behemoth that swallowed the ability to be pragmatic in an Agile Team? ",
         "postLongIntro": "The Agile train have arrived and it has taken over from it waterfall cousin. My question, though, is simply this: When did Agile grow into a behemoth that swallowed the ability to be pragmatic in an Agile Team?",
         "postFilename": "2012-05-14-When_did_agile_swallow_pragmatic.md"
+    },
+    {
+        "id": "2012-09-03-Combining_Ember_js_with_Netty",
+        "postTitle": "Combining Ember.js with Netty",
+        "postDate": "2012-09-03",
+        "postShortIntro": "Combining Ember.js with Netty ",
+        "postLongIntro": "Combining Ember.js with Netty",
+        "postFilename": "2012-09-03-Combining_Ember_js_with_Netty.md"
     }
+
 
 ]
