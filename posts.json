@@ -60,9 +60,7 @@
         "postTitle": "Combining Ember.js with Netty",
         "postDate": "2012-09-03",
         "postShortIntro": "Combining Ember.js with Netty ",
-        "postLongIntro": "Combining Ember.js with Netty",
+        "postLongIntro": "This blog post is split up into three parts. The first part consists of a short introduction, while the second and third part will talk about the client-side and the server-side respectably. The last part will also talk about one way in which it is possible to utilize the server-side application in order to keep your development, test and production versions of your client-side app the same without needing the prepackage the JavaScript code.",
         "postFilename": "2012-09-03-Combining_Ember_js_with_Netty.md"
     }
-
-
 ]
