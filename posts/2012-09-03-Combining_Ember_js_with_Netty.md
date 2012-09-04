@@ -204,12 +204,12 @@ All of the source code mentioned in this blog post is available on GitHub. Keep 
 References
 ----------
 
-- [https://netty.io](Netty)
-- [http://emberjs.com](Ember.js)
-- [https://github.com/joachimhs/netty-webserver](Netty-Webserver GitHub Repo)
-- [https://github.com/joachimhs/haagen-software.no](Haagen Software Github Repo)
-- [http://kenai.com/projects/btrace](BTrace)
-- [http://docs.jboss.org/richfaces/latest_3_3_X/en/apidoc_impl/org/ajax4jsf/javascript/JSMin.html](JSMin.java)
+- [Netty](https://netty.io)
+- [Ember.js](http://emberjs.com)
+- [Netty-Webserver GitHub Repo](https://github.com/joachimhs/netty-webserver)
+- [Haagen Software Github Repo](https://github.com/joachimhs/haagen-software.no)
+- [BTrace](http://kenai.com/projects/btrace)
+- [JSMin.java](http://docs.jboss.org/richfaces/latest_3_3_X/en/apidoc_impl/org/ajax4jsf/javascript/JSMin.html)
 
 
 
