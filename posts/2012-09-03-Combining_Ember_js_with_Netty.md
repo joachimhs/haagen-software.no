@@ -104,7 +104,7 @@ The next and final state in this except, is the _blog_ state which is responsibl
 
 Using statecharts, or Ember.Router in this case, is a very powerful way to describe how your user interface fits together along with the paths that your users can navigate through your application. Even though a lot of effort and code will go into your applications Router, you do end up with a very structured application that is easier to test and troubleshoot. 
 
-For more information on the Ember.js Router, please see this Guide from the [http://emberjs.com/guides/outlets/#toc_the-router](official Ember.JS website). 
+For more information on the Ember.js Router, please see this Guide from the [official Ember.JS website](http://emberjs.com/guides/outlets/#toc_the-router). 
 
 ###Templates
 
