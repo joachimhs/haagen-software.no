@@ -1,1 +1,0 @@
-HS.initialize(HS.router);

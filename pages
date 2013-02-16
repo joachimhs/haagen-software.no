@@ -91,7 +91,7 @@
             "id": "books",
             "page_name": "Books",
             "page_title": "Books",
-            "page_image_url": "img/hs_small.png",
+            "page_image_url": "img/skeie_cover100.jpg",
             "page_description": "Ember.js in Action, written by Joachim Haagen Skeie, will be published by Manning Publications in Q3 2013. Modern web applications look and perform like desktop apps while being secure, scalable, and fast. They provide rich UIs and they're ambitious. Ember.js is a JavaScript-driven framework designed to help you build just that!",
             "page_filename": "books.md",
             "parent_page_id": null,
