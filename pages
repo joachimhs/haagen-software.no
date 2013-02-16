@@ -1,0 +1,102 @@
+{ "pages": [
+        {
+            "id": "about",
+            "page_name": "About",
+            "page_title": "About",
+            "page_image_url": "img/abouticon.png",
+            "page_description": "What is Haagen Software, what services are provides and why should you care ?",
+            "page_filename": "about.md",
+            "parent_page_id": null,
+            "children_page_ids": null,
+            "visible_on_front_page": true
+        },
+        {
+            "id": "opensource",
+            "page_name": "Open Source",
+            "page_title": "Open Source",
+            "page_image_url": "img/osi_standard_logo.png",
+            "page_description": "Haagen Software aims to release 100% of its code as Open Source under an Open Source Initiative approved license. Get more information about current, planned and future projects.",
+            "page_filename": "opensource.md",
+            "parent_page_id": null,
+            "children_page_ids": ["eurekaj", "btrace"],
+            "visible_on_front_page": true
+        },
+        {
+            "id": "blog",
+            "page_name": "Blog",
+            "page_title": "Blog",
+            "page_image_url": "img/blog-icon-home.png",
+            "page_description": "Once in a while a blog post is written in relation to either one of the software projects being worked on, or on software development technologies or techniques in general.",
+            "page_filename": null,
+            "parent_page_id": null,
+            "children_page_ids": null,
+            "visible_on_front_page": true
+        },
+        {
+            "id": "consultancy",
+            "page_name": "Consultancy",
+            "page_title": "Consultancy",
+            "page_image_url": "img/hs_small.png",
+            "page_description": "Haagen Software is currently being bootstrapped. If you have an interesting project that you would like some help with, please do send a request. Consultancy fees start at USD 150 (NOK 900) excluding any taxes and government fees, for really interesting projects!",
+            "page_filename": "consultancy.md",
+            "parent_page_id": null,
+            "children_page_ids": null,
+            "visible_on_front_page": true
+        },
+        {
+            "id": "eurekaj",
+            "page_name": "EurekaJ",
+            "page_title": "EurekaJ",
+            "page_image_url": null,
+            "page_description": "EurekaJ description",
+            "page_filename": "eurekaj.md",
+            "parent_page_id": "opensource",
+            "children_page_ids": null,
+            "visible_on_front_page": false
+        },
+        {
+            "id": "btrace",
+            "page_name": "BTrace",
+            "page_title": "BTrace",
+            "page_image_url": null,
+            "page_description": "Btrace description",
+            "page_filename": "btrace.md",
+            "parent_page_id": "opensource",
+            "children_page_ids": null,
+            "visible_on_front_page": false
+        },
+        {
+            "id": "cv",
+            "page_name": "CV",
+            "page_title": "CV",
+            "page_image_url": null,
+            "page_description": "CV",
+            "page_filename": null,
+            "parent_page_id": null,
+            "children_page_ids": null,
+            "visible_on_front_page": false
+        },
+        {
+            "id": "courses",
+            "page_name": "Courses",
+            "page_title": "Courses",
+            "page_image_url": "img/hs_small.png",
+            "page_description": "Haagen Software offers group and individual training and courses, as well as speak at technology conferences.",
+            "page_filename": "courses.md",
+            "parent_page_id": null,
+            "children_page_ids": null,
+            "visible_on_front_page": true
+        },
+        {
+            "id": "books",
+            "page_name": "Books",
+            "page_title": "Books",
+            "page_image_url": "img/hs_small.png",
+            "page_description": "Ember.js in Action, written by Joachim Haagen Skeie, will be published by Manning Publications in Q3 2013. Modern web applications look and perform like desktop apps while being secure, scalable, and fast. They provide rich UIs and they're ambitious. Ember.js is a JavaScript-driven framework designed to help you build just that!",
+            "page_filename": "books.md",
+            "parent_page_id": null,
+            "children_page_ids": null,
+            "visible_on_front_page": true
+        }
+    ]
+}

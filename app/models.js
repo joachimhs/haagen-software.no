@@ -1,11 +1,11 @@
-HS.PageModel = DS.Model.extend({
+HS.Page = DS.Model.extend({
 	pageName: DS.attr('string'),
 	pageTitle: DS.attr('string'),
 	pageImageUrl: DS.attr('string'),
 	pageDescription: DS.attr('string'),
 	pageFilename: DS.attr('string'),
-	parentPage: DS.belongsTo('HS.PageModel'),
-	childrenPages: DS.hasMany('HS.PageModel'),
+	parentPage: DS.belongsTo('HS.Page'),
+	childrenPages: DS.hasMany('HS.Page'),
     visibleOnFrontPage: DS.attr('boolean'),
 	isExpanded: false,
 
@@ -21,13 +21,8 @@ HS.PageModel = DS.Model.extend({
     markdown: null
 });
 
-//We are reopening the class so that we can add the URL that the 
-//JSON Hash will be received from the server
-HS.PageModel.reopenClass({
-	url: '/pages.json?ids=%@'
-});
 
-HS.BlogPost = DS.Model.extend({
+HS.Post = DS.Model.extend({
     postTitle: DS.attr('string'),
     postDate: DS.attr('string'),
     postShortIntro: DS.attr('string'),
@@ -38,59 +33,39 @@ HS.BlogPost = DS.Model.extend({
     markdown: null
 });
 
-HS.BlogPost.reopenClass({
-    url: '/posts.json?ids=%@'
-});
-
-HS.CVData = DS.Model.extend({
-    primaryKey: 'id',
-    id: DS.attr('string'),
+HS.CurriculumVitae = DS.Model.extend({
     name: DS.attr('string'),
     about: DS.hasMany('HS.DataString', { embedded: true }),
     languages: DS.hasMany('HS.DataString', { embedded: true }),
     programming: DS.hasMany('HS.DataString', { embedded: true }),
     interest: DS.attr('string'),
-    education: DS.hasMany('HS.EducationData', { key: 'educationIDs' }),
-    experience: DS.hasMany('HS.ExperienceData', { key: 'experienceIDs' }),
-    project: DS.hasMany('HS.ProjectData', { key: 'projectIDs' }),
-    opensource: DS.hasMany('HS.OpenSourceData', { key: 'opensourceIDs' }),
-    publication: DS.hasMany('HS.PublicationData', {key: 'publicationIDs'}),
-    course: DS.hasMany('HS.CourseData', {key: 'courseIDs'}),
-
-    cvFullUrl: function() {
-        return '/cv/' + this.get('id');
-    }.property('id').cacheable()
-});
-
-HS.CVData.reopenClass({
-    url: '/curriculumvitae.json?ids=%@'
+    education: DS.hasMany('HS.Education'),
+    experience: DS.hasMany('HS.Experience'),
+    project: DS.hasMany('HS.Project'),
+    opensource: DS.hasMany('HS.OpenSource'),
+    publication: DS.hasMany('HS.Publication'),
+    course: DS.hasMany('HS.Course')
 });
 
 HS.DataString = DS.Model.extend({
     id: DS.attr('string')
 });
 
-HS.EducationData = DS.Model.extend({
-    primaryKey: 'id',
-    id: DS.attr('string'),
+HS.Education = DS.Model.extend({
+    period: DS.attr('string'),
+    title: DS.attr('string'),
+    description: DS.attr('string'),
+    externalLink: DS.attr('string')
+});
+
+HS.Experience = DS.Model.extend({
     period: DS.attr('string'),
     title: DS.attr('string'),
     description: DS.attr('string'),
     link: DS.attr('string')
 });
 
-HS.ExperienceData = DS.Model.extend({
-    primaryKey: 'id',
-    id: DS.attr('string'),
-    period: DS.attr('string'),
-    title: DS.attr('string'),
-    description: DS.attr('string'),
-    link: DS.attr('string')
-});
-
-HS.ProjectData = DS.Model.extend({
-    primaryKey: 'id',
-    id: DS.attr('string'),
+HS.Project = DS.Model.extend({
     period: DS.attr('string'),
     title: DS.attr('string'),
     description: DS.attr('string'),
@@ -98,9 +73,7 @@ HS.ProjectData = DS.Model.extend({
     link: DS.attr('string')
 });
 
-HS.OpenSourceData = DS.Model.extend({
-    primaryKey: 'id',
-    id: DS.attr('string'),
+HS.OpenSource = DS.Model.extend({
     period: DS.attr('string'),
     title: DS.attr('string'),
     description: DS.attr('string'),
@@ -108,9 +81,7 @@ HS.OpenSourceData = DS.Model.extend({
     link: DS.attr('string')
 });
 
-HS.PublicationData = DS.Model.extend({
-    primaryKey: 'id',
-    id: DS.attr('string'),
+HS.Publication = DS.Model.extend({
     publicationDate: DS.attr('string'),
     title: DS.attr('string'),
     description: DS.attr('string'),
@@ -118,9 +89,7 @@ HS.PublicationData = DS.Model.extend({
     location: DS.attr('string')
 });
 
-HS.CourseData = DS.Model.extend({
-    primaryKey: 'id',
-    id: DS.attr('string'),
+HS.Course = DS.Model.extend({
     publicationDate: DS.attr('string'),
     title: DS.attr('string'),
     description: DS.attr('string'),

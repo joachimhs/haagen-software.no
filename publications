@@ -1,0 +1,58 @@
+{ "publications": [
+    {
+        "id": 8,
+        "publicationDate": "25. April 2012",
+        "title": "Creating a Multi-touch single-page web-app in 10 minutes",
+        "description": "This talk goes through the steps required to use the frameworks jQuery, Ember.js and Ember-Touch to create a full scale Multi-touch single-page application in less than 10 minutes, structured after the Model-View-Controller (MVC) pattern.",
+        "external_link": "https://vimeo.com/album/1832954/video/52322066"
+    },
+    {
+        "id": 7,
+        "publicationDate": "13. December 2012",
+        "title": "RaspberryPi and Java Workshop",
+        "description": "Instructor on the javaBin Stavanger christmas meeting. Topic is RaspberryPi and Java where we will install a Linux OS, Java Embedded and play with the RaspberryPi's General Purpose Input Output (GPIO) pins for external integration of the RaspberryPi.",
+        "external_link": "http://java.no/event/982"
+    },
+    {
+        "id": 6,
+        "publicationDate": "2013",
+        "title": "Ember.js in Action",
+        "description": "Author of the Ember.js book \"Ember.js in Action\", to be published by Manning Publications in 2013",
+        "external_link": "http://www.manning.com"
+    },
+    {
+        "id": 5,
+        "publicationDate": "22. March 2012",
+        "title": "Ember.js - Rich Internet Applications Done Right",
+        "description": "InfoQ Article about Ember.js and associated addons.",
+        "external_link": "http://www.infoq.com/articles/emberjs"
+    },
+    {
+        "id": 4,
+        "publicationDate": "14. November 2011",
+        "title": "Lightning talk at Smidig 2011",
+        "description": "Når ble Pragmatisk slukt av Smidig ?",
+        "external_link": "http://vimeo.com/32086154"
+    },
+    {
+        "id": 3,
+        "publicationDate": "18. September 2011",
+        "title": "Effective Java Profiling with Open Source Tools",
+        "description": "InfoQ Article about Java Profiling and EurekaJ",
+        "external_link": "http://www.infoq.com/articles/java-profiling-with-open-source"
+    },
+    {
+        "id": 2,
+        "publicationDate": "6. June 2011",
+        "title": "Statecharts in SproutCore",
+        "description": "Blog Post on the official SproutCore Blog",
+        "external_link": "http://blog.sproutcore.com/statecharts-in-sproutcore/"
+    },
+    {
+        "id": 1,
+        "publicationDate": "23. April 2011",
+        "title": "Lightning talk at Roots Conf 2011",
+        "description": "Building Rich Internet Applications using SproutCore and Cappuccino.",
+        "external_link": "http://vimeo.com/24685982"
+    }
+]}

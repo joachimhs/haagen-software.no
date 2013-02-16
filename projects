@@ -1,0 +1,43 @@
+{ "projects": [
+    {
+        "id": 1,
+        "period": "Nov 2010 - Present",
+        "title": "IT Achitect, Software Developer",
+        "description": "Development lead for an application for analyzing oil spill for creating risk assessments and oil spill contingency analysis and planning.",
+        "client": "Akvaplan Niva SensE",
+        "location": "Oslo, Norway"
+    },
+    {
+        "id": 2,
+        "period": "Nov 2010 - Des 2011",
+        "title": "Software Developer, IT Performance Architect",
+        "description": "Systems Developer (11 months), IT Perfomance Architect (2 months) on the Norwegian Public Service Pension Funds PERFORM project. Took part of development for a new case work system on a new technology platform for the introduction of the new pension scheme on 01.01.2011.",
+        "client": "The Norwegian Public Service Pension Fund",
+        "location": "Oslo, Norway"
+    },
+    {
+        "id": 3,
+        "period": "June 2012 - August 2012",
+        "title": "Software Developer iOS (Kantega Quiz)",
+        "description": "Systems Developer (2 months, part time), Development of the iOS application Katega Quiz, used as a question-and-answer application for Kantega at various events.",
+        "client": "Kantega AS",
+        "location": "Oslo, Norway"
+    },
+    {
+        "id": 4,
+        "period": "September 2012 - November 2012",
+        "title": "Frontend Developer, ExorLive Mobile",
+        "description": "Frontend developer on ExorLive Mobile. A Web-based application that lets users view, schedule, select and perform workout exercises through visual exercises- and training programs using illustrations, videos and images. The web-based application is based on Ember.js and creates a rich and intuitive user experience.",
+        "client": "ExorLive AS",
+        "location": "Oslo, Norway"
+    },
+    {
+        "id": 5,
+        "period": "6. May 2013 - 8. May 2013",
+        "title": "Course Instructor: Writing Ambitious Webapps with Ember.js",
+        "description": "Course instructor for the 3 day course \"Writing Ambitious Webapps with Ember.js\", arranged by ProgramUtvikling at IT Fornebu. http://www.programutvikling.no/kurskalenderoversikt.aspx?mid_1=1352&mid=1535&id=1647862.",
+        "client": "ProgramUtvikling AS",
+        "location": "Oslo, Norway"
+    }
+
+]}

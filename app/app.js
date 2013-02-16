@@ -1,27 +1,24 @@
 //This creates the namespace for our Ember application. In this case HS
-HS = Ember.Application.create({
-	ready: function() {
-		this._super();
-	}
+var HS = Ember.Application.create({
 });
 
 var colorArray = ["#f35", "#c3d", "#0f3", "#41c", "#ca5", "#947", "#1ce", "#f0d", "#ff0", "#00f", "#bae", "#dd8"];
 
 //Removing the Camelcase-to-dash convention from Ember Data
-DS.Model.reopen({
-  namingConvention: {
-	keyToJSONKey: function(key) {
-	  return key;
-	},
 
-	foreignKey: function(key) {
-	  return key;
-	}
-  }
-});
+/*Ember.Route.reopen({
+    enter: function(router) {
+        this._super(router);
+        if(this.get('isLeafRoute')) {
+            var path = this.absoluteRoute(router);
+            mixpanel.track(path, {'page name' : document.title, 'url' : path});
+            _gaq.push(['_trackPageview', path]);
+        }
+    }
+});*/
 
 //Setting up the adapter to receive data from the server
-HS.Adapter = DS.Adapter.create({
+/*HS.Adapter = DS.Adapter.create({
     //Finding all object of a certain type. Fetching from the server
     findAll: function(store, type, ids) {
         var url = type.url.substring(0, (type.url.length - 7));
@@ -34,7 +31,7 @@ HS.Adapter = DS.Adapter.create({
                 if (data.opensource) store.loadMany(HS.OpenSourceData, data.opensource);
                 if (data.projects) store.loadMany(HS.ProjectData, data.projects);
                 if (data.publications) store.loadMany(HS.PublicationData, data.publications);
-                if (data.cvs) store.loadMany(type, data.cvs);
+                if (data.curriculum_vitaes) store.loadMany(type, data.curriculum_vitaes);
             } else {
                 store.loadMany(type, data);
             }
@@ -139,7 +136,7 @@ HS.Adapter = DS.Adapter.create({
     //object store in the database. Please see https://github.com/emberjs/data for
     //more information on this topic.
 
-});
+});*/
 
 HS.store = DS.Store.create({
     revision: 4, //Revision 4 is the newest revision of Ember Data, as of 26th of May 2012

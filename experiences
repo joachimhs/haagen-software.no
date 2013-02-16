@@ -1,0 +1,38 @@
+{ "experiences": [
+    {
+        "id": 1,
+        "period": "1. Nov 2010 - 31. Jul 2012",
+        "title": "Kantega",
+        "description": "Co-owner and Senior Consultant within Java and Web Technologies. For Projects, see Projects below.",
+        "location": "Oslo, Norway",
+        "external_link": "http://www.kantega.no"
+    },
+    {
+        "id": 2,
+        "period": "25. Jul 2006 - 30. Oct 2010",
+        "title": "NorgesGruppen Data AS",
+        "description": "Worked on B2B applications as a Systems Architect to support automatic store replenishement of norways largest retailer within food and groceries. Technical leadership of two seperate teams encompassing a total of 11 team mates.",
+        "location": "Oslo, Norway"
+    },
+    {
+        "id": 3,
+        "period": "13. Des 2004 - 4. Feb 2005",
+        "title": "NorgesGruppen Data AS",
+        "description": "Worked as a temporary employee (60-100%)over Christmas 2004 as a J2EE developer. Tasks included assessment and comparison of web-based frameworks for writing reusable web components in an existing application, as well as outlining a migration path from their existing approach to the recommended framework.",
+        "location": "Oslo, Norway"
+    },
+    {
+        "id": 4,
+        "period": "19. May 2012 - present",
+        "title": "Haagen Software AS",
+        "description": "Founder, Owner and Software Developer at Haagen Software AS.",
+        "location": "Oslo, Norway"
+    },
+    {
+        "id": 5,
+        "period": "May 2011 - present",
+        "title": "Member of the board: The Norwegian Java User Group, javaBin",
+        "description": "javaBin is an independent, idealistic organisation established in 1996 by a group of Java enthusiasts. Our goal is to create a community for sharing knowledge, experience and viewpoints on Java technology. The group has since then evolved to be Scandinavia's biggest and most active group for the promotion of Java. ",
+        "location": "Oslo, Norway"
+    }
+]}

@@ -92,7 +92,7 @@ HS.FooterView = Ember.View.extend({
 });
 
 HS.CvsView = Ember.View.extend({
-    templateName: 'cvs',
+    templateName: 'curriculum_vitaes',
     elementId: 'page'
 });
 

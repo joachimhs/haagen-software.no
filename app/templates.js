@@ -93,7 +93,7 @@ Ember.TEMPLATES['footerTemplate'] = Ember.Handlebars.compile('' +
     '</div>'
 );
 
-Ember.TEMPLATES['cvs'] = Ember.Handlebars.compile('' +
+Ember.TEMPLATES['curriculum_vitaes'] = Ember.Handlebars.compile('' +
     '{{#each content}}' +
         '-&gt; <a {{bindAttr href="cvFullUrl"}}>{{name}}</a>' +
     '{{/each}}'
@@ -220,5 +220,5 @@ Ember.TEMPLATES['cv'] = Ember.Handlebars.compile('' +
         '</table>' +
     '</div>' +
 
-    '<div>CV Design inspired by <a href="https://github.com/afriggeri/cv">https://github.com/afriggeri/cv</a>.</div>'
+    '<div>CV Design inspired by <a href="https://github.com/afriggeri/curriculum_vitaes">https://github.com/afriggeri/curriculum_vitaes</a>.</div>'
 );
