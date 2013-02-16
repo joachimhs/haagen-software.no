@@ -1,6 +1,22 @@
 HS.CvRoute = Ember.Route.extend({
     model: function() {
         return HS.CurriculumVitae.find();
+    },
+
+    setupControler: function(controller) {
+        this._super(controller);
+
+        mixpanel.track(path, {'page name' : document.title, 'url' : "/cv/"});
+        _gaq.push(['_trackPageview', "/blog/"]);
+    }
+});
+
+HS.CvPersonRoute = Ember.Route.extend({
+    setupControler: function(controller, model) {
+        this._super(controller, model);
+
+        mixpanel.track(path, {'page name' : document.title, 'url' : "/cv/" + model.get('id')});
+        _gaq.push(['_trackPageview', "/cv/" + model.get('id')]);
     }
 });
 

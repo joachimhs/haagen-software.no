@@ -7,6 +7,13 @@ HS.FrontPagesRoute = Ember.Route.extend({
         });
 
         return frontPages;
+    },
+
+    setupControler: function(controller) {
+        this._super(controller);
+
+        mixpanel.track(path, {'page name' : document.title, 'url' : "/"});
+        _gaq.push(['_trackPageview', "/"]);
     }
 });
 

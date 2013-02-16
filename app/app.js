@@ -12,7 +12,7 @@ HS.Router.map(function() {
         });
         this.resource("blog", {path: "/blog"}, function() {
             this.route("index", {path: "/"});
-            this.route("post", {path: "/post/:blog_post_id"});
+            this.route("post", {path: "/post/:post_id"});
         });
         this.resource("cv", {path: "/cv"}, function() {
             this.route("index", {path: "/"});

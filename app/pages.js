@@ -1,6 +1,13 @@
 HS.PagesRoute = Ember.Route.extend({
     model: function() {
         return HS.Page.find();
+    },
+
+    setupControler: function(controller, model) {
+        this._super(controller, model);
+
+        mixpanel.track(path, {'page name' : document.title, 'url' : "/pages/" + model.get('id')});
+        _gaq.push(['_trackPageview', "/pages/" + model.get('id')]);
     }
 });
 

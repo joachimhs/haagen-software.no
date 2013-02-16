@@ -10,7 +10,21 @@ HS.BlogController = Ember.ArrayController.extend({
 });
 
 HS.BlogIndexRoute = Ember.Route.extend({
+    setupControler: function(controller) {
+        this._super(controller);
 
+        mixpanel.track(path, {'page name' : document.title, 'url' : "/blog"});
+        _gaq.push(['_trackPageview', "/blog"]);
+    }
+});
+
+HS.BlogPostRoute = Ember.Route.extend({
+    setupControler: function(controller, model) {
+        this._super(controller, model);
+
+        mixpanel.track(path, {'page name' : document.title, 'url' : "/blog/" + model.get('id')});
+        _gaq.push(['_trackPageview', "/blog/" + model.get('id')]);
+    }
 });
 
 HS.BlogPostController = Em.Controller.extend({
@@ -25,12 +39,12 @@ HS.BlogPostController = Em.Controller.extend({
                 var converter = new Showdown.converter();
 
                 page.set('markdown', new Handlebars.SafeString(converter.makeHtml(data)));
-            }, "text")
-                .error(function() {
-                    page.set('markdown',  "Unable to find specified page");
-                    //TODO: Navigate to 404 state
-                });
+            }, "text").error(function() {
+                page.set('markdown',  "Unable to find specified page");
+                //TODO: Navigate to 404 state
+            });
 
+            document.title = this.get('content.postTitle') + " - Haagen Software AS";
         }
     }.observes('content')
 });
