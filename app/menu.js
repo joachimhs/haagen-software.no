@@ -18,7 +18,7 @@ HS.LeftMenuItemView = Ember.View.extend({
 Ember.TEMPLATES['menu'] = Ember.Handlebars.compile('' +
     '<div><a href="/"><img src="/img/hs_small.png" width="100" height="120" alt="Hs Small" style="margin-left: 50px;" /></a></div>' +
     '{{#each controllers.frontPages}}' +
-    '{{#unless parentPage}}{{view HS.LeftMenuItemView contentBinding="this"}}{{/unless}}' +
+        '{{#unless parentPageId}}{{view HS.LeftMenuItemView contentBinding="this"}}{{/unless}}' +
     '{{/each}}'
 );
 
@@ -30,6 +30,6 @@ Ember.TEMPLATES['menuItemTemplate'] = Ember.Handlebars.compile('' +
     '{{/if}}' +
 
     '{{#each childrenPages}}' +
-    '<div style="margin-left: 18px;">{{view HS.LeftMenuItemView contentBinding="this"}}</div>' +
+        '<div style="margin-left: 18px;">{{view HS.LeftMenuItemView contentBinding="this"}}</div>' +
     '{{/each}}'
 );

@@ -1,24 +1,12 @@
 HS.FrontPagesRoute = Ember.Route.extend({
     model: function() {
-        console.log('FrontPagesRoute model');
-        HS.Page.find();
-        var frontPages = HS.store.filter(HS.Page, function(data) {
-            if (data.get('parentPage') == null) { return true; }
-        });
-
-        return frontPages;
+        return HS.Page.findAll();
     },
 
-    setupControler: function(controller) {
+    setupController: function(controller) {
         this._super(controller);
-
-        mixpanel.track(path, {'page name' : document.title, 'url' : "/"});
         _gaq.push(['_trackPageview', "/"]);
     }
-});
-
-HS.FrontPagesController = Ember.ArrayController.extend({
-
 });
 
 HS.FrontPagesIndexController = Ember.ArrayController.extend({
@@ -35,13 +23,15 @@ Ember.TEMPLATES['frontPages'] = Ember.Handlebars.compile('' +
 
 Ember.TEMPLATES['frontPages/index'] = Ember.Handlebars.compile('' +
     '{{render header}}' +
+    '<div class="row-fluid">' +
     '{{#each controllers.frontPages}}' +
-    '{{#if visibleOnFrontPage}}{{view HS.PageItemView contentBinding="this"}}{{/if}}' +
-    '{{/each}}'
+        '{{#if visibleOnFrontPage}}{{view HS.PageItemView contentBinding="this"}}{{/if}}' +
+    '{{/each}}' +
+    '</div>'
 );
 
 Ember.TEMPLATES['tableCellTemplate'] = Ember.Handlebars.compile('' +
-    '<div class="imgdiv"><img {{bindAttr src="pageImageUrl"}}></div>' +
+    '<img {{bindAttr src="pageImageUrl"}} class="imgdiv">' +
     '<div class="txtdiv">' +
         '<h1>{{pageTitle}}</h1>' +
         '{{pageDescription}}<br/>' +

@@ -1,97 +1,249 @@
-HS.Page = DS.Model.extend({
-	pageName: DS.attr('string'),
-	pageTitle: DS.attr('string'),
-	pageImageUrl: DS.attr('string'),
-	pageDescription: DS.attr('string'),
-	pageFilename: DS.attr('string'),
-	parentPage: DS.belongsTo('HS.Page'),
-	childrenPages: DS.hasMany('HS.Page'),
-    visibleOnFrontPage: DS.attr('boolean'),
-	isExpanded: false,
+HS.Model = Ember.Object.extend({
 
-    postFullUrl: function() {
-        if (this.get('pageFilename') != null) {
-            return "/pages/" + this.get('id');
-        } else {
-            return "/" + this.get('id');
+});
+
+HS.Model.reopenClass({
+    collection: Ember.A(),
+
+    find: function(id, type) {
+        var foundItem = this.contentArrayContains(id, type);
+
+        if (!foundItem) {
+            foundItem = type.create({ id: id, isLoaded: false});
+            Ember.get(type, 'collection').pushObject(foundItem);
         }
 
-    }.property('id').cacheable(),
+        return foundItem;
+    },
 
-    markdown: null
+    contentArrayContains: function(id, type) {
+        var contains = null;
+
+        Ember.get(type, 'collection').forEach(function(item) {
+            if (item.get('id') === id) {
+                contains = item;
+            }
+        });
+
+        return contains;
+    },
+
+    findAll: function(url, type, key) {
+        console.log('findAll: ' + type + " " + url + " " + key);
+        var result = [];
+
+        var collection = this;
+        $.getJSON(url, function(data) {
+            $.each(data[key], function(i, row) {
+                var page = collection.contentArrayContains(row.id, type);
+                if (!page) {
+                    page =  type.create();
+                }
+                page.setProperties(row);
+                page.set('isLoaded', true);
+                result.pushObject(page);
+            });
+        });
+
+        Ember.set(type, 'collection', result);
+        return Ember.get(type, 'collection');
+    }
+})
+
+HS.Page = HS.Model.extend({
+    childrenPages: function() {
+        var children = [];
+        if (this.get('childrenPageIds')) {
+            console.log('childrenPages: ' + this.get('childrenPageIds'));
+
+            this.get('childrenPageIds').forEach(function(childPage) {
+                children.pushObject(HS.Page.find(childPage));
+            });
+        }
+        return children;
+    }.property('childrenPageIds')
 });
 
+HS.Page.reopenClass({
+    find: function(id) {
+        return HS.Model.find(id, HS.Page);
+    },
 
-HS.Post = DS.Model.extend({
-    postTitle: DS.attr('string'),
-    postDate: DS.attr('string'),
-    postShortIntro: DS.attr('string'),
-    postLongIntro: DS.attr('string'),
-    postFullUrl: function() {
-        return "/blog/post/" + this.get('id');
-    }.property('id').cacheable(),
-    markdown: null
+    findAll: function() {
+        return HS.Model.findAll('/pages', HS.Page, 'pages');
+    }
 });
 
-HS.CurriculumVitae = DS.Model.extend({
-    name: DS.attr('string'),
-    about: DS.hasMany('HS.DataString', { embedded: true }),
-    languages: DS.hasMany('HS.DataString', { embedded: true }),
-    programming: DS.hasMany('HS.DataString', { embedded: true }),
-    interest: DS.attr('string'),
-    education: DS.hasMany('HS.Education'),
-    experience: DS.hasMany('HS.Experience'),
-    project: DS.hasMany('HS.Project'),
-    opensource: DS.hasMany('HS.OpenSource'),
-    publication: DS.hasMany('HS.Publication'),
-    course: DS.hasMany('HS.Course')
+HS.Post = HS.Model.extend();
+
+HS.Post.reopenClass({
+    find: function(id) {
+        return HS.Model.find(id, HS.Post);
+    },
+
+    findAll: function() {
+        return HS.Model.findAll("/posts", HS.Post, "posts");
+    }
 });
 
-HS.DataString = DS.Model.extend({
-    id: DS.attr('string')
+HS.CurriculumVitae = HS.Model.extend({
+    education: function() {
+        console.log('education CP');
+        var educations = [];
+        if (this.get('educationIds')) {
+            console.log('educations: ' + this.get('educationIds'));
+
+            this.get('educationIds').forEach(function(edu) {
+                educations.pushObject(HS.Education.find(edu));
+            });
+        }
+        return educations;
+    }.property('id', 'educationIds', 'educationIds.length'),
+
+    experience: function() {
+        console.log('education CP');
+        var experiences = [];
+        if (this.get('experienceIds')) {
+            console.log('experience: ' + this.get('experienceIds'));
+
+            this.get('experienceIds').forEach(function(exp) {
+                experiences.pushObject(HS.Experience.find(exp));
+            });
+        }
+        return experiences;
+    }.property('experienceIds.length'),
+
+    project: function() {
+        console.log('education CP');
+        var projects = [];
+        if (this.get('projectIds')) {
+            console.log('experience: ' + this.get('projectIds'));
+
+            this.get('projectIds').forEach(function(proj) {
+                projects.pushObject(HS.Project.find(proj));
+            });
+        }
+        return projects;
+    }.property('projectIds.length'),
+
+    opensource: function() {
+        console.log('opensource CP');
+        var projects = [];
+        if (this.get('opensourceIds')) {
+            console.log('opensource: ' + this.get('opensourceIds'));
+
+            this.get('opensourceIds').forEach(function(oss) {
+                projects.pushObject(HS.OpenSource.find(oss));
+            });
+        }
+        return projects;
+    }.property('opensourceIds.length'),
+
+    publication: function() {
+        console.log('publication CP');
+        var publications = [];
+        if (this.get('publicationIds')) {
+            console.log('opensource: ' + this.get('publicationIds'));
+
+            this.get('publicationIds').forEach(function(oss) {
+                publications.pushObject(HS.Publication.find(oss));
+            });
+        }
+        return publications;
+    }.property('publicationIds.length'),
+
+    course: function() {
+        console.log('publication CP');
+        var courses = [];
+        if (this.get('courseIds')) {
+            console.log('course: ' + this.get('courseIds'));
+
+            this.get('courseIds').forEach(function(item) {
+                courses.pushObject(HS.Course.find(item));
+            });
+        }
+        return courses;
+    }.property('courseIds.length')
 });
 
-HS.Education = DS.Model.extend({
-    period: DS.attr('string'),
-    title: DS.attr('string'),
-    description: DS.attr('string'),
-    externalLink: DS.attr('string')
+HS.CurriculumVitae.reopenClass({
+    find: function(id) {
+        return HS.Model.find(id, HS.CurriculumVitae);
+    },
+
+    findAll: function() {
+        return HS.Model.findAll("/curriculum_vitaes", HS.CurriculumVitae, "curriculum_vitaes");
+    }
 });
 
-HS.Experience = DS.Model.extend({
-    period: DS.attr('string'),
-    title: DS.attr('string'),
-    description: DS.attr('string'),
-    link: DS.attr('string')
+HS.Education = HS.Model.extend();
+
+HS.Education.reopenClass({
+    find: function(id) {
+        return HS.Model.find(id, HS.Education);
+    },
+
+    findAll: function() {
+        return HS.Model.findAll("/educations", HS.Education, "educations");
+    }
 });
 
-HS.Project = DS.Model.extend({
-    period: DS.attr('string'),
-    title: DS.attr('string'),
-    description: DS.attr('string'),
-    client: DS.attr('string'),
-    link: DS.attr('string')
+HS.Experience = HS.Model.extend();
+
+HS.Experience.reopenClass({
+    find: function(id) {
+        return HS.Model.find(id, HS.Experience);
+    },
+
+    findAll: function() {
+        return HS.Model.findAll("/experiences", HS.Experience, "experiences");
+    }
 });
 
-HS.OpenSource = DS.Model.extend({
-    period: DS.attr('string'),
-    title: DS.attr('string'),
-    description: DS.attr('string'),
-    client: DS.attr('string'),
-    link: DS.attr('string')
+HS.Project = HS.Model.extend();
+
+HS.Project.reopenClass({
+    find: function(id) {
+        return HS.Model.find(id, HS.Project);
+    },
+
+    findAll: function() {
+        return HS.Model.findAll("/projects", HS.Project, "projects");
+    }
 });
 
-HS.Publication = DS.Model.extend({
-    publicationDate: DS.attr('string'),
-    title: DS.attr('string'),
-    description: DS.attr('string'),
-    link: DS.attr('string'),
-    location: DS.attr('string')
+HS.OpenSource = HS.Model.extend();
+
+HS.OpenSource.reopenClass({
+    find: function(id) {
+        return HS.Model.find(id, HS.OpenSource);
+    },
+
+    findAll: function() {
+        return HS.Model.findAll("/open_sources", HS.OpenSource, "open_sources");
+    }
 });
 
-HS.Course = DS.Model.extend({
-    publicationDate: DS.attr('string'),
-    title: DS.attr('string'),
-    description: DS.attr('string'),
-    link: DS.attr('string')
+HS.Publication = HS.Model.extend();
+
+HS.Publication.reopenClass({
+    find: function(id) {
+        return HS.Model.find(id, HS.Publication);
+    },
+
+    findAll: function() {
+        return HS.Model.findAll("/publications", HS.Publication, "publications");
+    }
+});
+
+HS.Course = HS.Model.extend();
+
+HS.Course.reopenClass({
+    find: function(id) {
+        return HS.Model.find(id, HS.Course);
+    },
+
+    findAll: function() {
+        return HS.Model.findAll("/courses", HS.Course, "courses");
+    }
 });

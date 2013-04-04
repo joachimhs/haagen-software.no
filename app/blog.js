@@ -1,6 +1,6 @@
 HS.BlogRoute = Ember.Route.extend({
     model: function() {
-        return HS.Post.find();
+        return HS.Post.findAll();
     }
 });
 
@@ -10,19 +10,19 @@ HS.BlogController = Ember.ArrayController.extend({
 });
 
 HS.BlogIndexRoute = Ember.Route.extend({
-    setupControler: function(controller) {
+    setupController: function(controller) {
         this._super(controller);
-
-        mixpanel.track(path, {'page name' : document.title, 'url' : "/blog"});
         _gaq.push(['_trackPageview', "/blog"]);
     }
 });
 
 HS.BlogPostRoute = Ember.Route.extend({
-    setupControler: function(controller, model) {
-        this._super(controller, model);
+    model: function(id) {
+        return HS.Post.find(id.post_id);
+    },
 
-        mixpanel.track(path, {'page name' : document.title, 'url' : "/blog/" + model.get('id')});
+    setupController: function(controller, model) {
+        this._super(controller, model);
         _gaq.push(['_trackPageview', "/blog/" + model.get('id')]);
     }
 });
@@ -31,7 +31,6 @@ HS.BlogPostController = Em.Controller.extend({
     content: null,
 
     contentObserver: function() {
-        console.log('BlogPostController contentObserver: ' + this.get('content'));
         if (this.get('content')) {
             var page = this.get('content');
 
@@ -53,7 +52,6 @@ HS.BlogIndexController = Ember.ArrayController.extend({
     needs: ['blog'],
 
     contentObserver: function() {
-        console.log('contentObserver: ' + this.get('content.length'));
         document.title = 'Blog - Haagen Software AS';
     }.observes('content')
 });

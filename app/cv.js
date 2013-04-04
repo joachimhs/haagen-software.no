@@ -1,21 +1,27 @@
 HS.CvRoute = Ember.Route.extend({
     model: function() {
-        return HS.CurriculumVitae.find();
+        HS.Education.findAll();
+        HS.Experience.findAll();
+        HS.Project.findAll();
+        HS.OpenSource.findAll();
+        HS.Publication.findAll();
+        HS.Course.findAll();
+        return HS.CurriculumVitae.findAll();
     },
 
-    setupControler: function(controller) {
+    setupController: function(controller) {
         this._super(controller);
-
-        mixpanel.track(path, {'page name' : document.title, 'url' : "/cv/"});
-        _gaq.push(['_trackPageview', "/blog/"]);
+        _gaq.push(['_trackPageview', "/cv/"]);
     }
 });
 
 HS.CvPersonRoute = Ember.Route.extend({
-    setupControler: function(controller, model) {
-        this._super(controller, model);
+    model: function(id) {
+        return HS.CurriculumVitae.find(id.curriculum_vitae_id);
+    },
 
-        mixpanel.track(path, {'page name' : document.title, 'url' : "/cv/" + model.get('id')});
+    setupController: function(controller, model) {
+        this._super(controller, model);
         _gaq.push(['_trackPageview', "/cv/" + model.get('id')]);
     }
 });
@@ -40,8 +46,8 @@ Ember.TEMPLATES['cv'] = Ember.Handlebars.compile('' +
 );
 
 Ember.TEMPLATES['cv/index'] = Ember.Handlebars.compile('' +
-    '{{#each controllers.cv}}' +
-    '-&gt; {{#linkTo cv.person this}}{{name}}{{/linkTo}}<br />' +
+    '{{#each controllers.cv.content}}' +
+        '-&gt; {{#linkTo cv.person this}}{{name}}{{/linkTo}}<br />' +
     '{{/each}}'
 );
 

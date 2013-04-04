@@ -19,6 +19,7 @@ HS.Router.map(function() {
             this.route("person", {path: "/:curriculum_vitae_id"});
         });
     });
+    this.resource("admin", {path: "/admin"});
 });
 
 HS.FooterView = Ember.View.extend({
@@ -53,14 +54,3 @@ Ember.TEMPLATES['footer'] = Ember.Handlebars.compile('' +
 );
 
 var colorArray = ["#f35", "#c3d", "#0f3", "#41c", "#ca5", "#947", "#1ce", "#f0d", "#ff0", "#00f", "#bae", "#dd8"];
-
-HS.Adapter = DS.RESTAdapter.extend({
-    find: function(store, type, id) {
-        this.findAll(store, type);
-    }
-});
-
-HS.store = DS.Store.create({
-    revision: 11,
-    adapter: HS.Adapter.create({})
-});

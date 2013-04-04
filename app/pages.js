@@ -1,13 +1,17 @@
 HS.PagesRoute = Ember.Route.extend({
     model: function() {
-        return HS.Page.find();
+        return HS.Page.findAll();
     },
 
-    setupControler: function(controller, model) {
+    setupController: function(controller, model) {
         this._super(controller, model);
-
-        mixpanel.track(path, {'page name' : document.title, 'url' : "/pages/" + model.get('id')});
         _gaq.push(['_trackPageview', "/pages/" + model.get('id')]);
+    }
+});
+
+HS.PagesPageRoute = Ember.Route.extend({
+    model: function(id) {
+        return HS.Page.find(id.page_id);
     }
 });
 
@@ -15,7 +19,7 @@ HS.PagesPageController = Ember.Controller.extend({
     content: null,
 
     contentObserver: function() {
-        if (this.get('content')) {
+        if (this.get('content.isLoaded')) {
             var page = this.get('content');
 
             $.get("/document/pages/" + this.get('content.pageFilename'), function(data) {
@@ -29,13 +33,13 @@ HS.PagesPageController = Ember.Controller.extend({
 
             document.title = page.get('pageName') + ' - Haagen Software AS';
         }
-    }.observes('content')
+    }.observes('content.isLoaded')
 });
 
 HS.PageItemView = Ember.View.extend({
     content: null,
     templateName: 'tableCellTemplate',
-    classNames: ["tablecell"]
+    classNames: ["span5", "frontbox"]
 });
 
 Ember.TEMPLATES['pages'] = Ember.Handlebars.compile('' +
@@ -44,5 +48,5 @@ Ember.TEMPLATES['pages'] = Ember.Handlebars.compile('' +
 );
 
 Ember.TEMPLATES['pages/page'] = Ember.Handlebars.compile('' +
-    '{{content.markdown}}'
+    '{{#if content.isLoaded}}{{content.markdown}}{{/if}}'
 );

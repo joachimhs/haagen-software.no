@@ -29,12 +29,12 @@
                 {"id": "Oracle, Sybase, Perst, Berkeley DB JE"}
             ],
             "interest": "Web applications, Rich Internet Applications, Ember.js, SproutCore, Client/Server, Model-View-Controller, Java, Application Monitoring, Application Profiling, Performance.",
-            "education_ids": [1, 2],
-            "experience_ids": [4, 5, 1, 2, 3],
-            "project_ids": [4, 5, 1, 3, 2],
-            "opensource_ids": [3, 2, 1],
-            "publication_ids": [6, 7, 8, 5, 4, 3, 2, 1],
-            "course_ids": [8, 7, 6, 5, 4, 3, 2, 1]
+            "educationIds": [1, 2],
+            "experienceIds": [4, 5, 1, 2, 3],
+            "projectIds": [4, 5, 1, 3, 2],
+            "opensourceIds": [3, 2, 1],
+            "publicationIds": [6, 7, 8, 5, 4, 3, 2, 1],
+            "courseIds": [8, 7, 6, 5, 4, 3, 2, 1]
         }
     ]
 }
