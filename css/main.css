@@ -1,0 +1,448 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    background-color: #fff;
+    color: #000;
+}
+
+header {
+    padding-top: 45px;
+    background: url('/uploads/geiranger.jpg') no-repeat left bottom;
+    background-size: cover;
+    min-height: 600px;
+    width: 100%;
+
+
+    font-family: 'Open Sans', sans-serif;
+}
+
+.leadingHeader {
+    padding: 5px;
+    letter-spacing: 3px;
+    font-style: italic;
+    color: #fff;
+    font-size: 32px;
+    text-align: center;
+    font-weight: 200;
+
+    font-family: 'Open Sans', sans-serif;
+
+    background-color: rgba(7, 73, 10, 0.7);
+}
+
+#logoImageSmall {
+    height: 40px;
+    max-height: 40px;
+    margin-left: 25px;
+    margin-top: -100px;
+    z-index: 100;
+}
+
+.almostBlack {
+    background: #000;
+}
+
+.copyrightText {
+    font-size: 16px;
+}
+
+.konsertBoks {
+    min-height: 800px;
+    width: 100%;
+    padding-top: 65px;
+    padding-bottom: 65px;
+}
+
+.topHeaderMargin {
+    margin-top: 130px;
+}
+
+.header {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 35px;
+    word-spacing: 1000px;
+    font-weight: 300;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 48px;
+    text-align: center;
+    border-bottom: 1px solid red;
+    font-style: italic;
+}
+
+p.ingress {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.frontPageParagraph {
+    font-style: italic;
+    font-size: 22px;
+    line-height: 30px;
+    word-spacing: 5px;
+    font-weight: 300;
+}
+
+.headerLink {
+    font-family: 'Open Sans', sans-serif;
+    min-height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-transform: uppercase;
+    float: left;
+
+    margin-right: 5px;
+    min-width: 130px;
+    max-width: 130px;
+    text-align: center;
+
+    color: #5d5b03;
+    background: #f2eddf;
+}
+
+.buyLink {
+    font-family: 'Open Sans', sans-serif;
+    min-height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-transform: uppercase;
+    float: left;
+
+    margin-right: 5px;
+    text-align: center;
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+    color: #5d5b03;
+    background: #f2eddf;
+}
+
+.floatingTop {
+    position: fixed;
+    top: -60px;
+    left: 0;
+    right: 0;
+    padding-top: 10px;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(7, 73, 10, 1);
+    padding-bottom: 10px;
+}
+
+a.headerLink:visited {
+    color: #000;
+}
+
+a.headerLink:hover {
+    color: #d5d5d5;
+}
+
+a.headerLink.active {
+    color: #5d5b03;
+}
+
+a.headerLink.active:hover {
+    color: #5b5b5b;
+    font-weight: normal;
+}
+
+.smallTopMargin {
+    margin-top: 25px;
+}
+
+.mediumTopMargin {
+    margin-top: 65px;
+}
+
+.mediumTopPadding {
+    padding-top: 65px;
+}
+
+.smallTopPadding {
+    padding-top: 35px;
+}
+
+.largeTopMargin {
+    margin-top: 95px;
+}
+
+.xlargeTopMargin {
+    margin-top: 125px;
+}
+
+
+.largeTopPadding {
+    padding-top: 95px;
+}
+
+.hugeTopMargin {
+    margin-top: 200px;
+}
+
+.pageContent {
+
+}
+
+h4 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.seeThruBox {
+    background-color: rgba(190, 242, 198, 0.83);
+    border: 1px solid rgba(6, 156, 0, 0.45);
+    color: #690203;
+    padding: 40px;
+    min-height: 350px;
+    max-height: 350px;
+}
+
+.seeThruBox h1 {
+    text-transform: uppercase;
+    font-size: 22px;
+    margin-bottom: 55px;
+    letter-spacing: 5px;
+}
+
+.seeThruBox p {
+    color: #550203;
+}
+
+.seeThruBox a {
+    color: #690203;
+    font-weight: 900;
+}
+
+footer {
+    background-color: #222101;
+    color: #9c978b;
+    text-align: center;
+}
+
+footer h1 {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    min-height: 50px;
+}
+
+footer p {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+footer hr {
+    background-color: #9c978b;
+    height: 1px;
+    border: 0;
+}
+
+footer a:visited {
+    color: #9c978b;
+}
+
+footer a:hover {
+    color: #d5d5d5;
+}
+
+footer a.active {
+    color: #9c978b;
+}
+
+footer a.active:hover {
+    color: #9c978b;
+    font-weight: normal;
+}
+
+#mainArea {
+    background-color: #fff;
+}
+
+.indexBoxBackground {
+    background: url('/uploads/icicle.jpg') no-repeat left top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#image-wrapper {
+    position: relative;
+}
+.svg-background, .svg-image {
+    clip-path: url(#clip-triangle);
+}
+.svg-image {
+
+}
+
+/* size and positioning */
+svg.clip-svg {
+    position: absolute;
+    height: 250px;
+    width: 250px;
+}
+
+@media only screen and (min-width: 1200px) {
+    .wrap {
+        margin: 0 auto;
+        width: 1100px;
+    }
+
+    #mainArea {
+        margin-top: -95px;
+    }
+
+    header img {
+        height: 150px;
+    }
+
+    .headerLink {
+
+    }
+
+    .header {
+
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+    .wrap {
+        margin: 0 auto;
+        width: 970px;
+    }
+
+    #mainArea {
+        margin-top: -100px;
+    }
+
+    header img {
+        height: 150px;
+    }
+
+    .header {
+
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .wrap {
+        margin: 0 auto;
+        width: 750px;
+    }
+
+    #mainArea {
+        margin-top: -100px;
+    }
+
+    header img {
+        height: 150px;
+    }
+
+    .header {
+
+    }
+
+    .headerLink {
+        background: #fff;
+        min-height: 40px;
+        line-height: 40px;
+        font-size: 12px;
+        text-transform: uppercase;
+        float: left;
+
+        margin-right: 5px;
+        min-width: 70px;
+        max-width: 70px;
+        text-align: center;
+    }
+
+    .buyLink {
+        background: #fff;
+        min-height: 40px;
+        line-height: 40px;
+        font-size: 12px;
+        text-transform: uppercase;
+        float: left;
+
+        margin-right: 5px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .wrap {
+        margin: 0 auto;
+        width: 600px;
+    }
+
+    #mainArea {
+        margin-top: -65px;
+    }
+
+    header {
+        padding-top: 25px;
+        text-align: center;
+    }
+
+    header img {
+        height: 150px;
+        margin-bottom: 15px;
+    }
+
+    .headerLink {
+        background: #fff;
+        min-height: 40px;
+        line-height: 40px;
+        font-size: 12px;
+        text-transform: uppercase;
+        float: left;
+
+        margin-right: 5px;
+        min-width: 93px;
+        max-width: 93px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .wrap {
+        margin: 0 auto;
+        width: 500px;
+    }
+
+    #mainArea {
+        margin-top: -65px;
+    }
+
+    header {
+        padding-top: 25px;
+        text-align: center;
+    }
+
+    header img {
+        height: 150px;
+        margin-bottom: 15px;
+    }
+
+    .header {
+        word-spacing: 15px;
+    }
+
+    .headerLink {
+        background: #fff;
+        min-height: 40px;
+        line-height: 40px;
+        font-size: 12px;
+        text-transform: uppercase;
+        float: left;
+
+        margin-right: 5px;
+        min-width: 77px;
+        max-width: 77px;
+    }
+}

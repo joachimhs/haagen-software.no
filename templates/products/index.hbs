@@ -1,0 +1,36 @@
+<div class="wrap pageContent">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="mediumTopMargin"></div>
+            <div class="header">Products</div>
+        </div>
+        <div class="col-md-7 col-sm-offset-1">
+            <div class="mediumTopMargin"></div>
+            <p class="frontPageParagraph">Haagen Software delivers Montric - a frontend and backend agnosting Application Performance Monitoring (APM) solution and Conticious - a Data Management System (DMS) that is fully compatible with the JSON API specification, as well as Ember Data. Both products are fully open source, released with a permissive Open Source License.</p>
+        </div>
+    </div>
+</div>
+
+<div class="mediumTopMargin"></div>
+
+<div class="wrap pageContent">
+{{#each product in controller}}
+    <h2>{{product.name}}</h2>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            {{#if product.cover}}
+                <img {{bind-attr src=product.cover}} />
+            {{/if}}
+
+        </div>
+        <div class="col-md-8">
+            {{markdown product.intro}}
+            {{link-to product.name "products.product" product}}
+        </div>
+    </div>
+{{/each}}
+</div>
+
+<div class="mediumTopMargin"></div>

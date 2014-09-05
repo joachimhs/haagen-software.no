@@ -1,0 +1,40 @@
+{{render "header"}}
+
+<div id="mainArea">
+    {{outlet}}
+</div>
+
+<footer>
+    <div class="wrap">
+        <div class="row">
+            <div class="mediumTopPadding"></div>
+
+            <div class="col-md-3 col-md-offset-1">
+                <h1>Consuting</h1>
+                <hr align="center" width="20px">
+                <p>{{link-to "Consulting" "pages.page" "consulting" class="footerLink"}}</p>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <h1>Products</h1>
+                <hr align="center" width="20px">
+                <p>{{link-to "Our Products" "products" class="footerLink"}}</p>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <h1>Contact Us</h1>
+                <hr align="center" width="20px">
+                <p><a class="footerLink" href="mailto:joachim@haagen-software.no">joachim (@) haagen-software.no</a></p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mediumTopPadding"></div>
+
+    <div class="almostBlack text-center">
+        <div class="mediumTopPadding"></div>
+
+        <p class="copyrightText">Copyright 2014 Haagen Software AS</p>
+
+        <div class="mediumTopPadding"></div>
+    </div>
+</footer>

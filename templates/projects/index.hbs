@@ -1,0 +1,35 @@
+<div class="wrap pageContent">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="mediumTopMargin"></div>
+            <div class="header">Haagen Software</div>
+        </div>
+        <div class="col-md-7 col-sm-offset-1">
+            <div class="mediumTopMargin"></div>
+            <p class="frontPageParagraph">Haagen Software delivers high quality bespoke software within modern web technology and Java. In 2014 Haagen Software arranged the second annual Ember Fest conference, a high-tech conference focussing on the Ember.js framework.</p>
+        </div>
+    </div>
+</div>
+
+<div class="mediumTopMargin"></div>
+
+<div class="wrap pageContent">
+    {{#each project in arrangedContent}}
+        <h2>{{project.name}}</h2>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                {{#if project.cover}}
+                    <img {{bind-attr src=project.cover}} />
+                {{/if}}
+            </div>
+            <div class="col-md-8">
+                {{markdown project.intro}}
+                {{link-to project.name "projects.project" project}}
+            </div>
+        </div>
+    {{/each}}
+</div>
+
+<div class="mediumTopMargin"></div>

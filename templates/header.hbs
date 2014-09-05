@@ -1,0 +1,31 @@
+<header id="header" data-stellar-background-ratio="0.5" data-stellar-vertical-offset="-350">
+    <div class="wrap">
+        <div id="headerLinkDiv">
+            <div class="row">
+                <div id="logoCols" class="col-xs-12 col-sm-12 col-md-12">
+                    {{#link-to "index"}}<img src="/uploads/logo_white_medium.png" id="logoImage" />{{/link-to}}
+                    {{#link-to "index"}}<img src="/uploads/logo_white_small.png" id="logoImageSmall" class="hidden" />{{/link-to}}
+                </div>
+
+                <div id="linkCols" class="col-xs-12 col-sm-12 col-md-12">
+                    <div id="headerLinkContainer" class="pull-right">
+                        {{#each page in controller.content}}
+                            {{#if page.route}}
+                                {{#link-to page.route class="headerLink"}}{{page.title}}{{/link-to}}
+                            {{else}}
+                                {{#link-to "pages.page" page class="headerLink"}}{{page.title}}{{/link-to}}
+                            {{/if}}
+
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topHeaderMargin" />
+
+    <div class="wrap leadingHeader">
+        <h1>Web and Java development</h1>
+    </div>
+</header>
