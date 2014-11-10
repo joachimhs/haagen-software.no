@@ -9,13 +9,9 @@
 
                 <div id="linkCols" class="col-xs-12 col-sm-12 col-md-12">
                     <div id="headerLinkContainer" class="pull-right">
+                        {{!#link-to "blog" class="headerLink"}}Blog{{!/link-to}}
                         {{#each page in controller.content}}
-                            {{#if page.route}}
-                                {{#link-to page.route class="headerLink"}}{{page.title}}{{/link-to}}
-                            {{else}}
-                                {{#link-to "pages.page" page class="headerLink"}}{{page.title}}{{/link-to}}
-                            {{/if}}
-
+                            {{#link-to index class="headerLink"}}{{page.title}}{{/link-to}}
                         {{/each}}
                     </div>
                 </div>

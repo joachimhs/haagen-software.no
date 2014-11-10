@@ -8,14 +8,5 @@ EF.ApplicationController = Ember.Controller.extend({
         });
 
         console.log('applicationController is initialized!');
-
-        var controller = this;
-
-        /*console.log('Finding pageElements!');
-        this.store.find('pageElement').then(function(data) {
-            data.content.forEach(function(pageElement) {
-                controller.pageElements.set(pageElement.id, pageElement);
-            });
-        });*/
     }
 });
