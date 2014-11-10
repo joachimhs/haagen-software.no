@@ -5,7 +5,7 @@ EF.ProjectsRoute = Ember.Route.extend(EF.ResetScroll, {
 
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/projects"]);
+        if (ga) ga('send', 'pageview', '/projects/');
 
         document.title = 'Projects -  Haagen Software';
     }

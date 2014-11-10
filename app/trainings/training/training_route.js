@@ -5,7 +5,7 @@ EF.TrainingsTrainingRoute = Ember.Route.extend(EF.ResetScroll, {
 
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/trainings/" + model.get('id')]);
+        if (ga) ga('send', 'pageview', '/trainings/' + model.get('id'));
 
         document.title = model.get('name') - ' Haagen Software';
     }

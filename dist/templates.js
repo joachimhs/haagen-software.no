@@ -21,6 +21,68 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["blog/index"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, helper, options;
+  data.buffer.push("\n            <div class=\"col-md-12\">\n                <h2>");
+  stack1 = helpers._triageMustache.call(depth0, "post.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</h2>\n                <div class=\"blog-date\">");
+  data.buffer.push(escapeExpression((helper = helpers.dmy_no || (depth0 && depth0.dmy_no),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "post.publishDate", options) : helperMissing.call(depth0, "dmy_no", "post.publishDate", options))));
+  data.buffer.push("</div>\n                <div class=\"blog-into\">");
+  data.buffer.push(escapeExpression((helper = helpers.markdown || (depth0 && depth0.markdown),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "post.intro", options) : helperMissing.call(depth0, "markdown", "post.intro", options))));
+  data.buffer.push("</div>\n                ");
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0,depth0],types:["STRING","ID"],data:data},helper ? helper.call(depth0, "blog.post", "post", options) : helperMissing.call(depth0, "link-to", "blog.post", "post", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n                </div>\n        ");
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push("\n                    -&gt; ");
+  stack1 = helpers._triageMustache.call(depth0, "post.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n                ");
+  return buffer;
+  }
+
+  data.buffer.push("<div class=\"wrap pageContent\">\n    <div class=\"row\">\n        ");
+  stack1 = helpers.each.call(depth0, "post", "in", "controller", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </div>\n</div>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["blog/post"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<div class=\"wrap pageContent\">\n    <div class=\"row\">\n        <div class=\"col-md-12\">\n            <h2>");
+  stack1 = helpers._triageMustache.call(depth0, "title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</h2>\n            <div class=\"blog-date\">");
+  data.buffer.push(escapeExpression((helper = helpers.dmy_no || (depth0 && depth0.dmy_no),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "post.publishDate", options) : helperMissing.call(depth0, "dmy_no", "post.publishDate", options))));
+  data.buffer.push("</div>\n            <p class=\"blog-into\">");
+  stack1 = helpers._triageMustache.call(depth0, "intro", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</p>\n            <div class=\"blog-content\">");
+  data.buffer.push(escapeExpression((helper = helpers.markdown || (depth0 && depth0.markdown),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "content.content", options) : helperMissing.call(depth0, "markdown", "content.content", options))));
+  data.buffer.push("</div>\n\n            ");
+  data.buffer.push(escapeExpression((helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","STRING"],data:data},helper ? helper.call(depth0, "Back to Blog Index", "blog", options) : helperMissing.call(depth0, "link-to", "Back to Blog Index", "blog", options))));
+  data.buffer.push("\n        </div>\n    </div>\n</div>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["bransjeregister"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};

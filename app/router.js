@@ -18,4 +18,8 @@ EF.Router.map(function() {
     this.resource('products', {"path": "/products"}, function() {
         this.route('product', {"path": "/:product_id"});
     });
+
+    this.resource("blog", {"path": "/blog"}, function() {
+        this.route('post', {"path": "/post/:post_id"});
+    });
 });

@@ -5,7 +5,7 @@ EF.ProductsRoute = Ember.Route.extend(EF.ResetScroll, {
 
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/products"]);
+        if (ga) ga('send', 'pageview', '/products/' + model.get('id'));
 
         document.title = "Products -  Haagen Software";
     }

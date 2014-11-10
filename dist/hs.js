@@ -38,6 +38,35 @@ EF.ApplicationController = Ember.Controller.extend({
         });*/
     }
 });
+EF.BlogIndexController = Ember.ArrayController.extend({
+    sortProperties: ['publishDate'],
+    sortAscending: false
+});
+EF.BlogRoute = Ember.Route.extend({
+    model: function() {
+        return this.store.find('post');
+    },
+
+    setupController: function(controller, model) {
+        this._super(controller, model);
+        if (ga) ga('send', 'pageview', '/blog/');
+
+        document.title = "Blog -  Haagen Software";
+    }
+});
+EF.BlogPostRoute = Ember.Route.extend({
+    model: function(params) {
+        return this.store.find('post', params.post_id);
+    },
+
+    setupController: function(controller, model) {
+        this._super(controller, model);
+
+        if (ga) ga('send', 'pageview', '/blog/' + model.get('id'));
+
+        document.title = model.get('title') + ' - Haagen Software';
+    }
+});
 EF.HeaderController = Ember.ArrayController.extend({
     sortProperties: ['sortIndex'],
     sortAscending: true,
@@ -146,6 +175,25 @@ EF.HeaderView = Ember.View.extend({
         });
     }.observes('isFloating')
 });
+Ember.Handlebars.registerBoundHelper('dmy', function(property) {
+    if (property !== null) {
+        var parsedDate = moment(property);
+        return parsedDate.format("DD-MM-YYYY");
+    }
+});
+
+Ember.Handlebars.registerBoundHelper('dmy_no', function(property) {
+    if (property !== null) {
+        var parsedDate = moment(property);
+        return parsedDate.format("DD MMMM YYYY");
+    }
+});
+
+Ember.Handlebars.registerBoundHelper('moment', function(property) {
+    if (property !== null) {
+        return moment(property);
+    }
+});
 Ember.Handlebars.registerBoundHelper('markdown', function(property) {
     if (property) {
         return new Handlebars.SafeString(Markdown(property));
@@ -185,6 +233,13 @@ EF.Page = DS.Model.extend({
     topMenu: DS.attr('boolean'),
     content: DS.attr('string')
 });
+EF.Post = DS.Model.extend({
+    content: DS.attr('string'),
+    tags: DS.attr('raw'),
+    title: DS.attr('string'),
+    publishDate: DS.attr('date'),
+    intro: DS.attr('string')
+});
 EF.Product = DS.Model.extend({
     name: DS.attr('string'),
     content: DS.attr('string'),
@@ -219,7 +274,8 @@ EF.PagesPageController = Ember.ObjectController.extend({
 EF.PagesPageRoute = Ember.Route.extend(EF.ResetScroll, {
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/pages/" + model.get('id')]);
+
+        if (ga) ga('send', 'pageview', '/pages/' + model.get('id'));
 
         document.title = model.get('title') + ' - Haagen Software';
     }
@@ -238,7 +294,7 @@ EF.ProductsProductController = Ember.ObjectController.extend({
 EF.ProductsProductRoute = Ember.Route.extend({
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/products/" + model.get('id')]);
+        if (ga) ga('send', 'pageview', '/products/' + model.get('id'));
 
         document.title = model.get('name') - ' Haagen Software';
     }
@@ -258,7 +314,7 @@ EF.ProductsRoute = Ember.Route.extend(EF.ResetScroll, {
 
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/products"]);
+        if (ga) ga('send', 'pageview', '/products/' + model.get('id'));
 
         document.title = "Products -  Haagen Software";
     }
@@ -274,7 +330,7 @@ EF.ProjectsProjectController = Ember.ObjectController.extend({
 EF.ProjectsProjectRoute = Ember.Route.extend({
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/projects/" + model.get('id')]);
+        if (ga) ga('send', 'pageview', '/projects/' + model.get('id'));
 
         document.title = model.get('name') - ' Haagen Software';
     }
@@ -286,7 +342,7 @@ EF.ProjectsRoute = Ember.Route.extend(EF.ResetScroll, {
 
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/projects"]);
+        if (ga) ga('send', 'pageview', '/projects/');
 
         document.title = 'Projects -  Haagen Software';
     }
@@ -319,6 +375,18 @@ EF.Router.map(function() {
     this.resource('products', {"path": "/products"}, function() {
         this.route('product', {"path": "/:product_id"});
     });
+
+    this.resource("blog", {"path": "/blog"}, function() {
+        this.route('post', {"path": "/post/:post_id"});
+    });
+});
+EF.RawTransform = DS.Transform.extend({
+    deserialize: function(serialized) {
+        return serialized;
+    },
+    serialize: function(deserialized) {
+        return deserialized;
+    }
 });
 EF.TrainingsTrainingRoute = Ember.Route.extend(EF.ResetScroll, {
     model: function(params) {
@@ -327,7 +395,7 @@ EF.TrainingsTrainingRoute = Ember.Route.extend(EF.ResetScroll, {
 
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/trainings/" + model.get('id')]);
+        if (ga) ga('send', 'pageview', '/trainings/' + model.get('id'));
 
         document.title = model.get('name') - ' Haagen Software';
     }
@@ -339,7 +407,7 @@ EF.TrainingsRoute = Ember.Route.extend(EF.ResetScroll, {
 
     setupController: function(controller, model) {
         this._super(controller, model);
-        _gaq.push(['_trackPageview', "/trainings"]);
+        if (ga) ga('send', 'pageview', '/trainings');
 
         document.title = 'Trainings -  Haagen Software';
     }

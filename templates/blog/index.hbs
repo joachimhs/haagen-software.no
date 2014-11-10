@@ -1,0 +1,14 @@
+<div class="wrap pageContent">
+    <div class="row">
+        {{#each post in controller}}
+            <div class="col-md-12">
+                <h2>{{post.title}}</h2>
+                <div class="blog-date">{{dmy_no post.publishDate}}</div>
+                <div class="blog-into">{{markdown post.intro}}</div>
+                {{#link-to "blog.post" post}}
+                    -&gt; {{post.title}}
+                {{/link-to}}
+                </div>
+        {{/each}}
+    </div>
+</div>
